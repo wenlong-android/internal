@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ebig.crosso">
+    <application>
+        <activity android:name=".ui.TimeBarActivity" android:theme="@style/Theme.Ebig" />
+        <activity android:name=".ui.FilterActivity" android:theme="@style/halfTheme" />
+
+        <activity
+            android:name=".utils.CrossoPermission$PermissionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/ActivityTranslucent"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+    </application>
+    <!--文件读写权限-->
+
+</manifest>

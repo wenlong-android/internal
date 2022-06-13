@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_openMainDoor"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:text="开锁（只开闸，需要手动拉门）"/>
+
+    <Button
+        android:id="@+id/btn_openFrontDoor"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:text="开前门（没有对应设备）"/>
+
+
+    <Button
+        android:id="@+id/btn_openbackDoor"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:text="开后门（没有对应设备）"/>
+</LinearLayout>

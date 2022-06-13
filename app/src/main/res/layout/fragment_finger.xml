@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_regist"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="注册手指"/>
+
+        <Button
+            android:id="@+id/btn_cancle"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="取消注册"/>
+
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="删除指纹"/>
+
+
+        <Button
+            android:id="@+id/btn_deleteAll"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="删除所有指纹"/>
+
+
+        <Button
+            android:id="@+id/btn_getAllId"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="获取所有指纹id"/>
+
+        <Button
+            android:id="@+id/btn_getIdTemplates"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="获取指定手指的信息和模板"/>
+
+        <Button
+            android:id="@+id/btn_loadTemplates"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="下发手指信息和模板"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ebig.socket">
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application>
+        <service
+            android:name="com.ebig.service.PiplelineService"
+            android:exported="true"
+            android:process=":cmd" >
+            <intent-filter>
+            <!-- AIDL完整路径名。必须指明，客户端能够通过AIDL类名查找到它的实现类 -->
+            <action android:name="com.ebig.service.PiplelineService" />
+        </intent-filter>
+
+        </service>
+        <service android:name="com.ebig.temperature_humidity.ThService">
+            <intent-filter>
+                <!-- AIDL完整路径名。必须指明，客户端能够通过AIDL类名查找到它的实现类 -->
+                <action android:name="com.ebig.temperature_humidity.ThService" />
+            </intent-filter>
+
+        </service>
+    </application>
+
+</manifest>

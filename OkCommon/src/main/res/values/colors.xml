@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="ebTransparent">#00000000</color>
+    <color name="ebTransparent20">#10000000</color>
+    <color name="ebTransparent50">#60000000</color>
+    <color name="ebBlack">#FF000000</color>
+    <color name="ebWhite">#FFFFFFFF</color>
+    <!--主色调-->
+    <color name="ebPrimaryDark">#20C8C2</color>
+    <color name="ebPrimary">#22DDD5</color>
+    <color name="ebOrange">#FF9D2E</color>
+    <color name="ebPink">#FF8380</color>
+    <color name="ebRed">#EE504F</color>
+    <color name="eBlue">#3498DB</color>
+
+    <color name="fontMain">#111A34</color>
+    <color name="fontSec">#41485D</color>
+    <color name="fontText">#666F83</color>
+    <color name="fontNote">#858B9C</color>
+    <color name="fontNote2">#C5CAD5</color>
+    <color name="divider">#E2E4EA</color>
+    <color name="bg">#F7F8FA</color>
+</resources>

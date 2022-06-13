@@ -1,0 +1,18 @@
+<resources>
+    <color name="colorWhite">#FFFFFF</color>
+<!--    <color name="colorRecordGreen">#dd1e4f18</color>-->
+    <color name="colorRecordGreen">#388e3c</color>
+    <color name="colorGrayTransparent">#1affffff</color>
+    <color name="color_33ffffff">#ffffff</color>
+    <color name="colorWhitelight">#bbecfd</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorgrey">#524B42</color>
+    <color name="colorbg">#26241C</color>
+    <color name="colorbaby_text">#985A1D</color>
+    <color name="font_primary">#212121</color>
+    <color name="font_secondary">#757575</color>
+    <color name="topbar_second">#616372</color>
+    <color name="primary_color_red">#C2185B</color>
+    <color name="primary_color_green_light">#27AE60</color>
+    <color name="colorBlue">#03A9F4</color>
+</resources>

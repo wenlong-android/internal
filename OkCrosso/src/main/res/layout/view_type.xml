@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBlack"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_block"
+            android:text="卡顿监控"
+            android:textColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:background="@drawable/type_selector" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_click"
+            android:text="行为日志"
+            android:textColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:background="@drawable/type_selector" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_hardware"
+            android:text="硬件函数"
+            android:textColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:background="@drawable/type_selector" />
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_api"
+            android:text="接口返回"
+            android:textColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:background="@drawable/type_selector" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_crash"
+            android:text="奔溃日志"
+            android:textColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:background="@drawable/type_selector" />
+
+
+        <TextView
+            android:id="@+id/selectNone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:background="@drawable/bg_green_light_selector"
+            android:text="全不选"/>
+    </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_comsue"
+        android:text="耗时统计"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:checked="true"
+        android:background="@drawable/type_selector" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cbException"
+        android:text="Exception"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:checked="true"
+        android:background="@drawable/type_selector" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_ram"
+        android:text="内存报警"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:checked="true"
+        android:background="@drawable/type_selector" />
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_stack"
+        android:text="堆栈信息"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:checked="true"
+        android:background="@drawable/type_selector" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cbLeak"
+        android:text="内存泄漏"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:checked="true"
+        android:background="@drawable/type_selector" />
+    <TextView
+        android:id="@+id/selectAll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:background="@drawable/bg_green_light_selector"
+        android:text="全选"/>
+
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:text="关闭"
+            android:gravity="center"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:orientation="horizontal"
+           android:gravity="center"
+           android:background="@drawable/bg_gray_selector"
+           android:layout_margin="8dp"
+           android:layout_weight="1">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="50dp"
+               android:text="开始: "
+               android:textColor="@color/colorWhite"
+               android:gravity="center"/>
+           <TextView
+               android:id="@+id/tvStart"
+               android:layout_width="wrap_content"
+               android:layout_height="50dp"
+               android:text="2022-04-20 00：00：00"
+               android:textColor="@color/colorWhite"
+               android:gravity="left|center_vertical"/>
+       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_gray_selector"
+            android:layout_margin="8dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="结束: "
+                android:textColor="@color/colorWhite"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tvEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="2022-04-20 00：00：00"
+                android:textColor="@color/colorWhite"
+                android:gravity="left|center_vertical"/>
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:text="确定"/>
+    </LinearLayout>
+
+</LinearLayout>

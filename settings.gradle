@@ -1,0 +1,5 @@
+rootProject.name = "InternalUnion"
+include ':app'
+include ':OkPipeline'
+include ':OkCommon'
+include ':OkCrosso'
