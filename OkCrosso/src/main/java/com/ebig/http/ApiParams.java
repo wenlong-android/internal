@@ -10,13 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ApiParams implements ApiBaseParams{
-
     private Integer current;
     private Integer size;
     private String queryName;
     private List<String> ids;
-    private List<ConditionsBean> conditions;
-
     public ApiParams(Integer current, Integer size, String queryName, List<String> ids) {
         this.current = current;
         this.size = size;
@@ -59,23 +56,6 @@ public class ApiParams implements ApiBaseParams{
         return new Gson().toJson(this);
     }
 
-    public String getJson(long start,long end){
-        String json=new Gson().toJson(this);
-        try {
-            JSONObject jsonObject=new JSONObject(json);
-            jsonObject.put("startTime", TimeUtils.getDate(start));
-            jsonObject.put("endTime", TimeUtils.getDate(end));
-            return jsonObject.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return json;
-    }
-
-    public List<ConditionsBean> getConditions() {
-        return conditions;
-    }
-
     public static class ConditionsBean {
         private String field;
         private String value;
@@ -100,5 +80,15 @@ public class ApiParams implements ApiBaseParams{
         public void setValue(String value) {
             this.value = value;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ApiParams{" +
+                "current=" + current +
+                ", size=" + size +
+                ", queryName='" + queryName + '\'' +
+                ", ids=" + ids +
+                '}';
     }
 }

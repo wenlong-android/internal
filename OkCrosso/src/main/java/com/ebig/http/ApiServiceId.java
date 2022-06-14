@@ -5,54 +5,54 @@ import java.util.HashMap;
 public class ApiServiceId {
     public static HashMap<String,String> apiService=new HashMap<>();
     //注册设备信息
-    protected final static String registerDevice = "registerDevice";
+    public final static String registerDevice = "registerDevice";
     //保存设备的设置
-    protected final static String saveDeviceSettings = "saveDeviceSettings";
+    public final static String saveDeviceSettings = "saveDeviceSettings";
     //删除设备的设置
-    protected final static String deleteDeviceSettings = "deleteDeviceSettings";
+    public final static String deleteDeviceSettings = "deleteDeviceSettings";
     //获取设备的设置
-    protected final static String getDeviceSettings = "getDeviceSettings";
+    public final static String getDeviceSettings = "getDeviceSettings";
     //获取租户列表
-    protected final static String getTenantList = "getTenantList";
+    public final static String getTenantList = "getTenantList";
     //新增/修改登录绑定信息
-    protected final static String saveUserBindings = "saveUserBindings";
+    public final static String saveUserBindings = "saveUserBindings";
     //删除登录绑定信息
-    protected final static String deleteUserBindings = "deleteUserBindings";
+    public final static String deleteUserBindings = "deleteUserBindings";
     //放入接口
-    protected final static String putIn = "putIn";
+    public final static String putIn = "putIn";
     //取出接口
-    protected final static String takeOut = "takeOut";
+    public final static String takeOut = "takeOut";
 
     /**************************基础信息接口**************************/
 
     //部门信息
-    protected final static String deviceBaseDept = "deviceBaseDept";
+    public final static String deviceBaseDept = "deviceBaseDept";
     //用户信息
-    protected final static String deviceBaseUser = "deviceBaseUser";
+    public final static String deviceBaseUser = "deviceBaseUser";
     //用户登录绑定信息
-    protected final static String deviceBaseUserBinding = "deviceBaseUserBinding";
+    public final static String deviceBaseUserBinding = "deviceBaseUserBinding";
     //库房信息
-    protected final static String deviceBaseStorehouse = "deviceBaseStorehouse";
+    public final static String deviceBaseStorehouse = "deviceBaseStorehouse";
     //货位信息
-    protected final static String deviceBaseLoc = "deviceBaseLoc";
+    public final static String deviceBaseLoc = "deviceBaseLoc";
     //商品信息
-    protected final static String deviceBaseGoods = "deviceBaseGoods";
+    public final static String deviceBaseGoods = "deviceBaseGoods";
     //商品策略
-    protected final static String deviceBaseGoodsStrategy = "deviceBaseGoodsStrategy";
+    public final static String deviceBaseGoodsStrategy = "deviceBaseGoodsStrategy";
     //组织单位
-    protected final static String deviceBaseCompany = "deviceBaseCompany";
+    public final static String deviceBaseCompany = "deviceBaseCompany";
     //批号
-    protected final static String deviceBaseLot = "deviceBaseLot";
+    public final static String deviceBaseLot = "deviceBaseLot";
     //批次
-    protected final static String deviceBaseBatch = "deviceBaseBatch";
+    public final static String deviceBaseBatch = "deviceBaseBatch";
     //单品码
-    protected final static String deviceBaseUniqueCode = "deviceBaseUniqueCode";
+    public final static String deviceBaseUniqueCode = "deviceBaseUniqueCode";
     //业务信息接口
-    protected final static String deviceBizInBoundOrder = "deviceBizInBoundOrder";
+    public final static String deviceBizInBoundOrder = "deviceBizInBoundOrder";
     //出库单
-    protected final static String deviceBizOutBoundOrder = "deviceBizOutBoundOrder";
+    public final static String deviceBizOutBoundOrder = "deviceBizOutBoundOrder";
     //xxxxx
-    //protected final static String xxxxx = "xxxxx";
+    //public final static String xxxxx = "xxxxx";
 
     public static void init(){
         apiService.put(registerDevice, ApiType.machine);
