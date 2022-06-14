@@ -81,7 +81,7 @@ public class GsonUtils {
     }
 
     /*解析json为列表实体*/
-    public <T> T fromJsonList(String json,  Class<T> classOfT) throws JsonSyntaxException {
+    public static <T> T fromJsonList(String json,  Class<T> classOfT) throws JsonSyntaxException {
         if (json == null) {
             return null;
         } else {

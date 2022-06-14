@@ -26,7 +26,7 @@ public class ApiRequest implements IApiRequest {
             @Override
             public void onSuccess(NetResult result) {
                 ELog.print("ApiRequest onSuccess:"+ GsonUtils.toJson(result));
-                if (result != null && result.getCode() == 200 && result.getData() != null) {
+                if (result != null && result.getCode() == 200) {
                     callBack.onResult(result);
                     CrossoDataAPI.getInstance().http(Thread.currentThread().getName(),
                             new HttpDetails(params, url, result.getCode(), new Gson().toJson(result)));

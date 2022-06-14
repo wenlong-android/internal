@@ -122,19 +122,30 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
             long start = TimeUtils.time2string("2021-05-30 00:00:00");
             //System.currentTimeMillis() - 1000 * 60 * 60 * 24 * 365;
 
-            ApiParamsAll params = new ApiParamsAll(1, 1000, "deviceBaseUser", start, nowTome);
-            Api.deFault().deviceBaseDept(params)
-                    .request(new ApiCall<NetResult>() {
-                        @Override
-                        public void onResult(NetResult netResult) {
-                            ELog.print("getTenantList NetResult onResult:" + GsonUtils.toJson(netResult));
-                        }
+//            ApiParamsAll params = new ApiParamsAll(1, 1000, "deviceBaseUser", start, nowTome);
+//            Api.deFault().deviceBaseDept(params)
+//                    .request(new ApiCall<NetResult>() {
+//                        @Override
+//                        public void onResult(NetResult netResult) {
+//                            ELog.print("getTenantList NetResult onResult:" + GsonUtils.toJson(netResult));
+//                        }
+//
+//                        @Override
+//                        public void onFail(int code, String error) {
+//                            ELog.print("getTenantList NetResult onFail:" + error);
+//                        }
+//                    });
+            Api.deFault().registerDevice(FactoryCodeIns.getCode(),"1","智能冰箱").request(new ApiCall<NetResult>() {
+                @Override
+                public void onResult(NetResult netResult) {
+                 ELog.print("registerDevice:"+netResult.toString());
+                }
 
-                        @Override
-                        public void onFail(int code, String error) {
-                            ELog.print("getTenantList NetResult onFail:" + error);
-                        }
-                    });
+                @Override
+                public void onFail(int code, String error) {
+                    ELog.print("registerDevice onFail:"+error);
+                }
+            });
         }
     }
 
