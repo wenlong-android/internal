@@ -2,26 +2,20 @@ package com.ebig.temperature_humidity;
 
 import com.ebig.annotation.ThreadComputation;
 import com.ebig.annotation.ThreadIo;
-import com.ebig.common.Developers;
-import com.ebig.common.ModuleName;
-import com.ebig.crosso.manager.db.UpLoadDb;
+import com.ebig.common.Team;
 import com.ebig.crosso.manager.db.upload.ThDbInfo;
 import com.ebig.crosso.manager.db.upload.UploaManager;
 import com.ebig.socket.bean.TeHuEntity;
 import com.ebig.socket.bean.ThEntity;
-import com.ebig.utils.AppGlobals;
 import com.ebig.utils.GsonUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
-
-import io.netty.buffer.Unpooled;
 
 public class ThCacheFactory {
     private static long currentStamp = System.currentTimeMillis();
@@ -59,7 +53,7 @@ public class ThCacheFactory {
         }
     }
 
-    @ThreadComputation(user = Developers.wwl, lib = "pipeline")
+    @ThreadComputation(user = Team.wwl, lib = "pipeline")
     private static void resizeHashMap() {
         lock.lock();
         List<TeHuEntity> uploadList = new ArrayList<>();
