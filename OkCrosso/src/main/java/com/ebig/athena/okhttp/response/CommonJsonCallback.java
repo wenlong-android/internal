@@ -44,13 +44,13 @@ public class CommonJsonCallback implements Callback {
     /**
      * 将其它线程的数据转发到UI线程
      */
-    private Handler mDeliveryHandler;
+   // private Handler mDeliveryHandler;
     private DisposeDataListener mListener;
 
 
     public CommonJsonCallback(DisposeDataHandle handle) {
         this.mListener = handle.mListener;
-        this.mDeliveryHandler = new Handler(Looper.getMainLooper());
+       // this.mDeliveryHandler = new Handler(Looper.getMainLooper());
     }
 
     @Override
@@ -58,12 +58,12 @@ public class CommonJsonCallback implements Callback {
         /**
          * 此时还在非UI线程，因此要转发
          */
-        mDeliveryHandler.post(new Runnable() {
-            @Override
-            public void run() {
+//        mDeliveryHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
                 mListener.onFailure(new OkHttpException(NETWORK_ERROR, ioexception.getMessage()));
-            }
-        });
+//            }
+//        });
     }
 
     @Override
@@ -71,12 +71,12 @@ public class CommonJsonCallback implements Callback {
         final String result = response.body().string();
         ELog.print("onResponse:");
         ELog.print("onResponse:"+result);
-        mDeliveryHandler.post(new Runnable() {
-            @Override
-            public void run() {
+//        mDeliveryHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
                 handleResponse(result);
-            }
-        });
+//            }
+//        });
     }
 
     private void handleResponse(Object responseObj) {
