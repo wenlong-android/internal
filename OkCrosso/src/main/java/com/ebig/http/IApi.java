@@ -52,7 +52,8 @@ public interface IApi {
     //出库单
     ApiRequest deviceBizOutBoundOrder(ApiBaseParams params);
 
-
-    //推送
+    //推送自动调用
     ApiRequest push(ApiBaseParams params,String name,String deviceId);
+
+
 }

@@ -22,4 +22,25 @@ public class JsonUtils {
         }
         return jsonObject;
     }
+
+    public static String createSome() {
+        JSONObject object=new JSONObject();
+        try {
+            object.put("key","value");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return object.toString();
+    }
+
+    public static String appan(String toJson, String data) {
+        try {
+            JSONObject jsonObject=new JSONObject(toJson);
+            jsonObject.put("data",data);
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }

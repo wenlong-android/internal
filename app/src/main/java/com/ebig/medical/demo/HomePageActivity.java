@@ -18,10 +18,15 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.ebig.annotation.ThreadIo;
 import com.ebig.annotation.ThreadMain;
+import com.ebig.crosso.manager.Crosso;
 import com.ebig.crosso.manager.db.upload.ThDbInfo;
 import com.ebig.crosso.manager.db.upload.UploaManager;
 import com.ebig.crosso.utils.PermissionConsts;
+import com.ebig.http.Api;
+import com.ebig.http.ApiCall;
+import com.ebig.http.ApiParamsAll;
 import com.ebig.http.ApushEntity;
+import com.ebig.http.NetResult;
 import com.ebig.idl.Common2Call;
 import com.ebig.log.ELog;
 import com.ebig.medical.demo.fragment.BackLightFragment;
@@ -35,6 +40,9 @@ import com.ebig.push.APush;
 import com.ebig.socket.common.HostSpCenter;
 import com.ebig.socket.entity.CmdRequestInfo;
 import com.ebig.socket.idl.PipeReadAndWriteCall;
+import com.ebig.utils.FactoryCodeIns;
+import com.ebig.utils.GsonUtils;
+import com.ebig.utils.TimeUtils;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -68,6 +76,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
     private Ipipeline pipeline;
     private String clientHost;
     private Button btnDatabase;
+    private String factoryCode = "a00005061-00000001";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,6 +84,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.home_activity);
         pipeline = PipeBus.l().build();
         clientHost = HostSpCenter.getClientIp();
+        FactoryCodeIns.save("a00005061-00000001");
         initView();
         initData();
         initListenner();
@@ -91,11 +101,40 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
         } else if (v.getId() == R.id.launch) {
 
         } else if (v.getId() == R.id.btnDatabase) {
-            //Crosso.viewRecord(HomePageActivity.this);
+             Crosso.viewRecord(HomePageActivity.this);
             // THServiceManager.l().begin("192.168.10.88",9413);
 
-        }else if (v.getId()==R.id. btnThOnly){
-            startActivity(new Intent(HomePageActivity.this, ThActivity.class));
+        } else if (v.getId() == R.id.btnThOnly) {
+            //startActivity(new Intent(HomePageActivity.this, ThActivity.class));
+
+//            Api.deFault().getTenantList().request(new ApiCall<NetResult>() {
+//                @Override
+//                public void onResult(NetResult netResult) {
+//                    ELog.print("getTenantList NetResult onResult:"+ GsonUtils.toJson(netResult));
+//                }
+//
+//                @Override
+//                public void onFail(int code, String error) {
+//                    ELog.print("getTenantList NetResult onFail:"+error);
+//                }
+//            });
+            long nowTome = System.currentTimeMillis();
+            long start = TimeUtils.time2string("2021-05-30 00:00:00");
+            //System.currentTimeMillis() - 1000 * 60 * 60 * 24 * 365;
+
+            ApiParamsAll params = new ApiParamsAll(1, 1000, "deviceBaseUser", start, nowTome);
+            Api.deFault().deviceBaseDept(params)
+                    .request(new ApiCall<NetResult>() {
+                        @Override
+                        public void onResult(NetResult netResult) {
+                            ELog.print("getTenantList NetResult onResult:" + GsonUtils.toJson(netResult));
+                        }
+
+                        @Override
+                        public void onFail(int code, String error) {
+                            ELog.print("getTenantList NetResult onFail:" + error);
+                        }
+                    });
         }
     }
 

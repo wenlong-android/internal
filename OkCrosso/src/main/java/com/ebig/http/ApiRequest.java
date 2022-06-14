@@ -5,6 +5,8 @@ import com.ebig.athena.okhttp.exception.OkHttpException;
 import com.ebig.athena.okhttp.listener.DisposeDataListener;
 import com.ebig.crosso.bean.aop.HttpDetails;
 import com.ebig.crosso.manager.CrossoDataAPI;
+import com.ebig.log.ELog;
+import com.ebig.utils.GsonUtils;
 import com.google.gson.Gson;
 
 public class ApiRequest implements IApiRequest {
@@ -18,9 +20,12 @@ public class ApiRequest implements IApiRequest {
 
     @Override
     public void request(ApiCall<NetResult> callBack) {
+        ELog.print("ApiRequest url:"+url);
+        ELog.print("ApiRequest params:"+params);
         RequestCenter.getRequestPost(url, params, new DisposeDataListener() {
             @Override
             public void onSuccess(NetResult result) {
+                ELog.print("ApiRequest onSuccess:"+ GsonUtils.toJson(result));
                 if (result != null && result.getCode() == 200 && result.getData() != null) {
                     callBack.onResult(result);
                     CrossoDataAPI.getInstance().http(Thread.currentThread().getName(),
@@ -33,6 +38,7 @@ public class ApiRequest implements IApiRequest {
 
             @Override
             public void onFailure(OkHttpException exception) {
+                ELog.print("ApiRequest onFailure:"+ exception.getMessage());
                 callBack.onFail(exception.getEcode(), exception.getMessage());
                 CrossoDataAPI.getInstance().http(Thread.currentThread().getName(), new HttpDetails(params, url, exception.getEcode(), exception.getMessage()));
             }

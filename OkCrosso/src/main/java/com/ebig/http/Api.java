@@ -1,13 +1,20 @@
 package com.ebig.http;
 
 import com.ebig.utils.GsonUtils;
+import com.ebig.utils.JsonUtils;
 
-public class Api implements IApi {
+import org.json.JSONObject;
+
+public class Api extends ApiHelper implements IApi {
     private static String host = "http://192.168.1.71:9999/";
 
 
     private static class Host {
         private static Api api = new Api();
+    }
+
+    public static Api deFault(){
+        return Host.api;
     }
 
     @Override
@@ -26,8 +33,8 @@ public class Api implements IApi {
     @Override
     public ApiRequest registerDevice(String factoryCode, String tenantId, String machineName) {
         String url = ApiHelper.makeUrl(true, host, "registerDevice", ApiType.machine);
-        String param = ApiHelper.makeRegisterDeviceJsons(factoryCode, tenantId, machineName);
-        ApiRequest request=new ApiRequest(url,param);
+        JSONObject param =  makeRegisterDeviceJsons(factoryCode, tenantId, machineName);
+        ApiRequest request=new ApiRequest(url,jsonMake(param));
         return request;
     }
     /**
@@ -68,7 +75,7 @@ public class Api implements IApi {
     @Override
     public ApiRequest getTenantList() {
         String url = ApiHelper.makeUrl(true, host, "getTenantList", ApiType.upms);
-        ApiRequest request=new ApiRequest(url,"");
+        ApiRequest request=new ApiRequest(url, JsonUtils.createSome());
         return request;
     }
 
@@ -118,7 +125,7 @@ public class Api implements IApi {
     }
 
     /**
-     * 部门信息
+     * 获取部门信息
      * @param params
      * @return
      */
@@ -129,7 +136,7 @@ public class Api implements IApi {
         return request;
     }
     /**
-     * 用户信息
+     * 获取用户信息
      * @param params
      * @return
      */
@@ -140,7 +147,7 @@ public class Api implements IApi {
         return request;
     }
     /**
-     * 用户登录绑定信息
+     * 获取用户登录绑定信息
      * @param params
      * @return
      */
@@ -152,7 +159,7 @@ public class Api implements IApi {
     }
 
     /**
-     * 库房信息
+     * 获取库房信息
      * @param params
      * @return
      */
@@ -164,7 +171,7 @@ public class Api implements IApi {
     }
 
     /**
-     * 货位信息
+     * 获取货位信息
      * @param params
      * @return
      */
@@ -175,7 +182,7 @@ public class Api implements IApi {
         return request;
     }
     /**
-     * 商品信息
+     * 获取商品信息
      * @param params
      * @return
      */
@@ -186,7 +193,7 @@ public class Api implements IApi {
         return request;
     }
     /**
-     * 商品策略
+     * 获取商品策略
      * @param params
      * @return
      */
@@ -197,7 +204,7 @@ public class Api implements IApi {
         return request;
     }
     /**
-     * 组织单位
+     * 获取组织单位
      * @param params
      * @return
      */
@@ -208,7 +215,7 @@ public class Api implements IApi {
         return request;
     }
     /**
-     * 批号
+     * 获取批号
      * @param params
      * @return
      */
@@ -219,7 +226,7 @@ public class Api implements IApi {
         return request;
     }
     /**
-     * 批次
+     * 获取批次
      * @param params
      * @return
      */
@@ -230,7 +237,7 @@ public class Api implements IApi {
         return request;
     }
     /**
-     * 单品码
+     * 获取单品码
      * @param params
      * @return
      */
@@ -242,7 +249,7 @@ public class Api implements IApi {
     }
 
     /**
-     * 入库单
+     * 获取入库单
      * @param params
      * @return
      */
@@ -254,7 +261,7 @@ public class Api implements IApi {
     }
 
     /**
-     * 出库单
+     * 获取出库单
      * @param params
      * @return
      */
