@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ebig.log.ELog;
 import com.ebig.service.CmdServiceManager;
-import com.ebig.socket.common.HostSpCenter;
 import com.ebig.utils.StrUtils;
 
 import butterknife.BindView;
@@ -41,17 +40,17 @@ public class IpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activity_ip);
         ButterKnife.bind(this);
-        String host = HostSpCenter.getClientIp();
-        if (StrUtils.notEmpty(host)) {
-            String[] arr = host.split("\\.");
-            ELog.printArrays(arr);
-            if (arr != null && arr.length == 4) {
-                edit1.setText(arr[0]);
-                edit2.setText(arr[1]);
-                edit3.setText(arr[2]);
-                edit4.setText(arr[3]);
-            }
-        }
+//        String host = HostSpCenter.getClientIp();
+//        if (StrUtils.notEmpty(host)) {
+//            String[] arr = host.split("\\.");
+//            ELog.printArrays(arr);
+//            if (arr != null && arr.length == 4) {
+//                edit1.setText(arr[0]);
+//                edit2.setText(arr[1]);
+//                edit3.setText(arr[2]);
+//                edit4.setText(arr[3]);
+//            }
+//        }
     }
 
 
@@ -65,21 +64,21 @@ public class IpActivity extends AppCompatActivity {
             String t2 = edit2.getText().toString();
             String t3 = edit3.getText().toString();
             String t4 = edit4.getText().toString();
-            if (StrUtils.notEmpty(t1) &&
-                    StrUtils.notEmpty(t2) &&
-                    StrUtils.notEmpty(t3) &&
-                    StrUtils.notEmpty(t4)) {
-                HostSpCenter.saveClientIp(t1 + "." + t2 + "." + t3 + "." + t4);
-                Toast.makeText(IpActivity.this, "即将重新启动", Toast.LENGTH_LONG).show();
-                CmdServiceManager.l().release();
-                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        System.exit(0);
-                    }
-                }, 2000);
-
-            }
+//            if (StrUtils.notEmpty(t1) &&
+//                    StrUtils.notEmpty(t2) &&
+//                    StrUtils.notEmpty(t3) &&
+//                    StrUtils.notEmpty(t4)) {
+//                HostSpCenter.saveClientIp(t1 + "." + t2 + "." + t3 + "." + t4);
+//                Toast.makeText(IpActivity.this, "即将重新启动", Toast.LENGTH_LONG).show();
+//                CmdServiceManager.l().release();
+//                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        System.exit(0);
+//                    }
+//                }, 2000);
+//
+//            }
         }
     }
 }

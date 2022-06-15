@@ -27,9 +27,8 @@ public class PipeBus implements PipeCall, PipeThCall, PipeSocketMonitorCall, Pip
         return Home.home;
     }
 
-    public PipeBus with(String clientHost) {
-        this.host=clientHost;
-        pipeline = new Pipeline.Cosmetic(clientHost)
+    public PipeBus with() {
+        pipeline = new Pipeline.Cosmetic()
                 .debug(true)
                 .setReadFrequency(30)
                 .setWriteFrequency(30)

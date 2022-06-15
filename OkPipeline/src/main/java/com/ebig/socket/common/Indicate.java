@@ -14,17 +14,17 @@ public class Indicate  {
     }
 
      public void deviceConnect(String uuid, String ipHost) {
-         if (ipHost.equals(PipeBus.l().getHost())) {
+        //if (ipHost.equals(PipeBus.l().getHost())) {
              clientConnect = true;
-         }
+       //  }
 
     }
 
 
     public void deviceDisConnect(String uuid, String ipHost) {
-        if (ipHost.equals(PipeBus.l().getHost())) {
+        //if (ipHost.equals(PipeBus.l().getHost())) {
             clientConnect = false;
-        }
+        //}
     }
 
 
@@ -37,22 +37,22 @@ public class Indicate  {
 
 
     public void writeOutTime(String uuid, String ipHost,boolean being) {
-        if (ipHost.equals(PipeBus.l().getHost())) {
+       // if (ipHost.equals(PipeBus.l().getHost())) {
             writeOutTime = being;
-        }
+      //  }
     }
 
 
     public void readOutTime(String uuid, String ipHost,boolean being) {
-        if (ipHost.equals(PipeBus.l().getHost())) {
+       // if (ipHost.equals(PipeBus.l().getHost())) {
             readOutime = being;
-        }
+      //  }
     }
 
      public void outTime(String uuid, String ipHost,boolean being) {
-        if (ipHost.equals(PipeBus.l().getHost())) {
+       // if (ipHost.equals(PipeBus.l().getHost())) {
             rwOutTime = being;
-        }
+        //}
     }
 
     public static boolean isWriteOutTime() {

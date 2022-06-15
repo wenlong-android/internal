@@ -17,7 +17,7 @@ public class Pipeline implements Ipipeline{
     private final boolean autoReBoot;
     private final boolean logDbRecord;
     private final int serverPort;
-    private final String clientHost;
+
     private final PipeCall idelCall;
     private final PipeThCall thCall;
     private final PipeSocketMonitorCall connectCall;
@@ -36,7 +36,6 @@ public class Pipeline implements Ipipeline{
         this.autoReBoot=cosmetic.autoReBoot;
         this.logDbRecord=cosmetic.logDbRecord;
         this.serverPort=cosmetic.serverPort;
-        this.clientHost=cosmetic.clientHost;
         this.idelCall=cosmetic.idelCall;
         this.thCall=cosmetic.thCall;
         this.connectCall=cosmetic.connectCall;
@@ -50,15 +49,15 @@ public class Pipeline implements Ipipeline{
         private boolean autoReBoot=true;
         private boolean logDbRecord=true;
         private int serverPort=8080;
-        private  String clientHost;
+
 
         private PipeCall idelCall;
         private PipeThCall thCall;
         private PipeSocketMonitorCall connectCall;
         private PipeReadAndWriteCall chatCall;
 
-        public Cosmetic(String clientHost) {
-            this.clientHost=clientHost;
+        public Cosmetic() {
+
         }
         public Cosmetic serverPort(int serverPort) {
             this.serverPort = serverPort;
@@ -147,9 +146,7 @@ public class Pipeline implements Ipipeline{
         return serverPort;
     }
 
-    public String getClientHost() {
-        return clientHost;
-    }
+
 
     public PipeCall getIdelCall() {
         return idelCall;

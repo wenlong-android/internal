@@ -29,6 +29,7 @@ public class Api extends ApiHelper implements IApi {
      * @param tenantId
      * @param machineName
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest registerDevice(String factoryCode, String tenantId, String machineName) {
@@ -40,6 +41,7 @@ public class Api extends ApiHelper implements IApi {
     /**
      * 保存设备的设置
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest saveDeviceSettings(String json) {
@@ -50,6 +52,7 @@ public class Api extends ApiHelper implements IApi {
     /**
      * 获取设备的设置
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest getDeviceSettings(String arrJson) {
@@ -60,6 +63,7 @@ public class Api extends ApiHelper implements IApi {
     /**
      * 删除设备的设置
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest deleteDeviceSettings(String arrJson) {
@@ -71,6 +75,7 @@ public class Api extends ApiHelper implements IApi {
     /**
      * 获取租户列表
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest getTenantList() {
@@ -83,6 +88,7 @@ public class Api extends ApiHelper implements IApi {
      * 新增/修改登录绑定信息
      * @param json
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest saveUserBindings(String json) {
@@ -94,6 +100,7 @@ public class Api extends ApiHelper implements IApi {
      * 删除登录绑定信息
      * @param json
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest deleteUserBindings(String json) {
@@ -105,6 +112,7 @@ public class Api extends ApiHelper implements IApi {
      * 放入接口
      * @param json
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest putIn(String json) {
@@ -116,6 +124,7 @@ public class Api extends ApiHelper implements IApi {
      * 取出接口
      * @param json
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest takeOut(String json) {
@@ -128,6 +137,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取部门信息
      * @param params
      * @return
+     * 对应db:sys_dept
      */
     @Override
     public ApiRequest deviceBaseDept(ApiBaseParams params) {
@@ -139,6 +149,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取用户信息
      * @param params
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest deviceBaseUser(ApiBaseParams params) {
@@ -150,6 +161,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取用户登录绑定信息
      * @param params
      * @return
+     * 对应db:sys_user
      */
     @Override
     public ApiRequest deviceBaseUserBinding(ApiBaseParams params) {
@@ -162,6 +174,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取库房信息
      * @param params
      * @return
+     * 对应db:base_storehouse
      */
     @Override
     public ApiRequest deviceBaseStorehouse(ApiBaseParams params) {
@@ -174,6 +187,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取货位信息
      * @param params
      * @return
+     * 对应db:base_loc
      */
     @Override
     public ApiRequest deviceBaseLoc(ApiBaseParams params) {
@@ -185,6 +199,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取商品信息
      * @param params
      * @return
+     * 对应db:base_goods
      */
     @Override
     public ApiRequest deviceBaseGoods(ApiBaseParams params) {
@@ -196,6 +211,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取商品策略
      * @param params
      * @return
+     * 对应db:base_goods_strategy
      */
     @Override
     public ApiRequest deviceBaseGoodsStrategy(ApiBaseParams params) {
@@ -207,6 +223,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取组织单位
      * @param params
      * @return
+     * 对应db:base_company
      */
     @Override
     public ApiRequest deviceBaseCompany(ApiBaseParams params) {
@@ -218,6 +235,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取批号
      * @param params
      * @return
+     * 对应db:st_lot
      */
     @Override
     public ApiRequest deviceBaseLot(ApiBaseParams params) {
@@ -229,6 +247,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取批次
      * @param params
      * @return
+     * 对应db:st_batch
      */
     @Override
     public ApiRequest deviceBaseBatch(ApiBaseParams params) {
@@ -240,6 +259,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取单品码
      * @param params
      * @return
+     * 对应db:st_unique_code
      */
     @Override
     public ApiRequest deviceBaseUniqueCode(ApiBaseParams params) {
@@ -252,6 +272,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取入库单
      * @param params
      * @return
+     * 对应db:st_store_command
      */
     @Override
     public ApiRequest deviceBizInBoundOrder(ApiBaseParams params) {
@@ -264,6 +285,7 @@ public class Api extends ApiHelper implements IApi {
      * 获取出库单
      * @param params
      * @return
+     * 对应db:st_out_command
      */
     @Override
     public ApiRequest deviceBizOutBoundOrder(ApiBaseParams params) {
@@ -275,6 +297,7 @@ public class Api extends ApiHelper implements IApi {
      * 推送自动调用，在入库时需做判断接口类型
      * @param params
      * @return
+     * 对应db:
      */
     @Override
     public ApiRequest push(ApiBaseParams params,String name, String deviceId) {

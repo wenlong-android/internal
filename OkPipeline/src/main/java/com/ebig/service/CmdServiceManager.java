@@ -10,6 +10,7 @@ import android.util.Log;
 
 import androidx.annotation.IntDef;
 
+import com.ebig.log.ELog;
 import com.ebig.socket.common.PipeBus;
 import com.ebig.socket.common.SocketIoManager;
 import com.ebig.socket.entity.RemoteIndex;
@@ -50,6 +51,7 @@ public class CmdServiceManager implements ICmdService {
             iCmdServiceCall.regist(new IResultListenner.Stub() {
                 @Override
                 public void onResult(@RemoteIndex int index, String json) throws RemoteException {
+                    ELog.print("onServiceConnected index:"+index+" ,json:"+json);
                     if (index == RemoteIndex.messageRead) {
                         RomoteCmd info = new Gson().fromJson(json, RomoteCmd.class);
                         SocketIoManager.load().accept(info.getUuid(), info.getHost(), info.getCmd());

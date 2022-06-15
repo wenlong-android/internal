@@ -49,19 +49,18 @@ public class DispatchManagerCopy extends SocketIoBase {
 
     @Override
     public void accept(String uuid, String host, String cmd) {
-        if (!host.equals(PipeBus.l().getHost())) return;
-        //ELog.print(host+ " 接收到的原始数据:" + cmd);
-        CmdResultInfo rawInfo = SoketIoFactory.dispatchMatch(uuid, host, cmd);
-        String order = rawInfo.getOrder();
-        PipeWriter.make().cancleIfMatch(order);
-        if (StrUtils.notEmpty(order)) {
-            /**创建对应的chain4Handler*/
-            Chain4Handler chain4Handler = makeDispatchHandleList();
-            chain4Handler.nextIndex(rawInfo);
-        } else {
-            ELog.print("返回异常 cmd：" + rawInfo.toString());
-        }
-
+//        if (!host.equals(PipeBus.l().getHost())) return;
+//        //ELog.print(host+ " 接收到的原始数据:" + cmd);
+//        CmdResultInfo rawInfo = SoketIoFactory.dispatchMatch(uuid, host, cmd);
+//        String order = rawInfo.getOrder();
+//        PipeWriter.make().cancleIfMatch(order);
+//        if (StrUtils.notEmpty(order)) {
+//            /**创建对应的chain4Handler*/
+//            Chain4Handler chain4Handler = makeDispatchHandleList();
+//            chain4Handler.nextIndex(rawInfo);
+//        } else {
+//            ELog.print("返回异常 cmd：" + rawInfo.toString());
+//        }
     }
 
     @Override

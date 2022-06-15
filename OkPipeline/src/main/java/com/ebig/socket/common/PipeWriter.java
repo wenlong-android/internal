@@ -28,7 +28,7 @@ public class PipeWriter {
         this.mTask = task;
         isDispatching = true;
         SenderListenner listenner = task.getListenner();
-        SocketChannel channel = GatewayService.getGatewayChannel(PipeBus.l().getHost());
+        SocketChannel channel = GatewayService.getGatewayChannel("192.168.1.189");
         if (channel != null) {
             channel.writeAndFlush(HexUtils.hexStringToBytes(task.cmd()));
             ELog.print(" 写超时：" + Indicate.isWriteOutTime() + " ,读写超时：" + Indicate.rwOutTime);
