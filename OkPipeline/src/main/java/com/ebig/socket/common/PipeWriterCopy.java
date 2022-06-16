@@ -31,7 +31,7 @@ public class PipeWriterCopy {
         this.mTask = task;
         isDispatching = true;
         SenderListenner listenner = task.getListenner();
-        SocketChannel channel = GatewayService.getGatewayChannel("192.168.1.189" );
+        SocketChannel channel = GatewayService.getChannerByCargo(task.cargo());
         if (channel != null) {
             sendCount = 0;
             timer = new Timer();

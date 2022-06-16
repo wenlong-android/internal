@@ -17,11 +17,28 @@ public class GatewayService {
         return map;
     }
 
-    public static SocketChannel getGatewayChannel(String id){
+    private static SocketChannel getGatewayChannel(String id){
         return map.get(id);
     }
 
     public static void removeGatewayChannel(String id){
         map.remove(id);
+    }
+
+    /**
+     * 可在这里用cargo与channel形成映射关系
+     * @param cargo
+     * @return
+     */
+    public static SocketChannel getChannerByCargo(int cargo){
+        if (map.size()==0){
+            return null;
+        }
+        if (cargo==1){
+            return  getGatewayChannel("192.168.1.189");
+        }else if (cargo==2){
+            return getGatewayChannel("192.168.1.188");
+        }
+        return map.get(0);
     }
 }
