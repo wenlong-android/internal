@@ -22,7 +22,10 @@ import com.ebig.crosso.manager.Crosso;
 import com.ebig.crosso.manager.db.upload.ThDbInfo;
 import com.ebig.crosso.manager.db.upload.UploaManager;
 import com.ebig.crosso.utils.PermissionConsts;
+import com.ebig.http.Api;
+import com.ebig.http.ApiCall;
 import com.ebig.http.ApushEntity;
+import com.ebig.http.NetResult;
 import com.ebig.idl.Common2Call;
 import com.ebig.log.ELog;
 import com.ebig.medical.demo.fragment.BackLightFragment;
@@ -35,7 +38,8 @@ import com.ebig.medical.demo.fragment.ScannerFragment;
 import com.ebig.push.APush;
 import com.ebig.socket.entity.CmdRequestInfo;
 import com.ebig.socket.idl.PipeReadAndWriteCall;
-import com.ebig.utils.FactoryCodeIns;
+import com.ebig.sp.SpDevice;
+import com.ebig.utils.GsonUtils;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -52,6 +56,8 @@ import com.ebig.socket.idl.PipeThCall;
 import com.ebig.socket.entity.CmdType;
 import com.ebig.socket.utils.IpUtils;
 import com.ebig.socket.utils.PipeStringUtils;
+
+import org.json.JSONArray;
 
 public class HomePageActivity extends AppCompatActivity implements View.OnClickListener, PipeSocketMonitorCall, PipeThCall, PipeIdelCall, PipeReadAndWriteCall {
 
@@ -76,7 +82,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         pipeline = PipeBus.l().build();
-        FactoryCodeIns.save("a00005061-00000001");
+        SpDevice.save("a00005061-00000001");
         initView();
         initData();
         initListenner();
@@ -93,51 +99,37 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
         } else if (v.getId() == R.id.launch) {
 
         } else if (v.getId() == R.id.btnDatabase) {
-             Crosso.viewRecord(HomePageActivity.this);
+            Crosso.viewRecord(HomePageActivity.this);
             // THServiceManager.l().begin("192.168.10.88",9413);
 
         } else if (v.getId() == R.id.btnThOnly) {
-             startActivity(new Intent(HomePageActivity.this, ThActivity.class));
-
-//            Api.deFault().getTenantList().request(new ApiCall<NetResult>() {
+            //  startActivity(new Intent(HomePageActivity.this, ThActivity.class));
+//            Api.deFault().saveDeviceSettings("api", "apiGson").request(new ApiCall<NetResult>() {
 //                @Override
 //                public void onResult(NetResult netResult) {
-//                    ELog.print("getTenantList NetResult onResult:"+ GsonUtils.toJson(netResult));
+//                ELog.print("saveDeviceSettings:"+ GsonUtils.toJson(netResult));
 //                }
 //
 //                @Override
 //                public void onFail(int code, String error) {
-//                    ELog.print("getTenantList NetResult onFail:"+error);
+//                    ELog.print("saveDeviceSettings onFail :"+ error );
+//
 //                }
 //            });
-//            long nowTome = System.currentTimeMillis();
-//            long start = TimeUtils.time2string("2021-05-30 00:00:00");
-            //System.currentTimeMillis() - 1000 * 60 * 60 * 24 * 365;
+            JSONArray array=new JSONArray();
+            array.put("api");
+            Api.deFault().getDeviceSettings(array).request(new ApiCall<NetResult>() {
+                @Override
+                public void onResult(NetResult netResult) {
+                    ELog.print("saveDeviceSettings:"+ GsonUtils.toJson(netResult));
+                }
 
-//            ApiParamsAll params = new ApiParamsAll(1, 1000, "deviceBaseUser", start, nowTome);
-//            Api.deFault().deviceBaseDept(params)
-//                    .request(new ApiCall<NetResult>() {
-//                        @Override
-//                        public void onResult(NetResult netResult) {
-//                            ELog.print("getTenantList NetResult onResult:" + GsonUtils.toJson(netResult));
-//                        }
-//
-//                        @Override
-//                        public void onFail(int code, String error) {
-//                            ELog.print("getTenantList NetResult onFail:" + error);
-//                        }
-//                    });
-//            Api.deFault().registerDevice(FactoryCodeIns.getCode(),"1","智能冰箱").request(new ApiCall<NetResult>() {
-//                @Override
-//                public void onResult(NetResult netResult) {
-//                 ELog.print("registerDevice:"+netResult.toString());
-//                }
-//
-//                @Override
-//                public void onFail(int code, String error) {
-//                    ELog.print("registerDevice onFail:"+error);
-//                }
-//            });
+                @Override
+                public void onFail(int code, String error) {
+                    ELog.print("saveDeviceSettings onFail :"+ error );
+
+                }
+            });
         }
     }
 
@@ -175,7 +167,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
 
     private void initData() {
         mIPTv.setText("本机:" + IpUtils.getIPAddress(HomePageActivity.this));
-        client.setText("客户端:192.168.1.189"  );
+        client.setText("客户端:192.168.1.189");
         initTag();
 
 //
@@ -197,24 +189,24 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void deviceConnect(String uuid, String ipHost) {
 
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    status.setText("连接状态：已连接");
-                }
-            });
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                status.setText("连接状态：已连接");
+            }
+        });
 
     }
 
     @Override
     public void deviceDisConnect(String uuid, String ipHost) {
 
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    status.setText("连接状态：已断开");
-                }
-            });
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                status.setText("连接状态：已断开");
+            }
+        });
 
     }
 
@@ -226,36 +218,36 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void writeOutTime(String uuid, String ipHost) {
 
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    status.setText("连接状态：发送超时");
-                }
-            });
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                status.setText("连接状态：发送超时");
+            }
+        });
 
     }
 
     @Override
     public void readOutTime(String uuid, String ipHost) {
 
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    status.setText("连接状态：读取超时");
-                }
-            });
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                status.setText("连接状态：读取超时");
+            }
+        });
 
     }
 
     @Override
     public void outTime(String uuid, String ipHost) {
 
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    status.setText("连接状态：读写超时");
-                }
-            });
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                status.setText("连接状态：读写超时");
+            }
+        });
 
     }
 

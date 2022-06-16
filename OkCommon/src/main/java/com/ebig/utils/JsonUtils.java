@@ -1,5 +1,8 @@
 package com.ebig.utils;
 
+import com.ebig.sp.SpDevice;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,5 +45,29 @@ public class JsonUtils {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public static JSONObject createStting(String key, String value) {
+        JSONObject father=new JSONObject();
+        JSONObject son=new JSONObject();
+        try {
+            son.put(key,value);
+            father.put("settings",son);
+            father.put("factoryCode", SpDevice.getCode());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return father;
+    }
+
+    public static JSONObject crateSettingArr(JSONArray arrJson) {
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("settingKeys",arrJson);
+            jsonObject.put("factoryCode", SpDevice.getCode());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 }

@@ -1,12 +1,11 @@
 package com.ebig.http;
 
-import com.ebig.utils.FactoryCodeIns;
+import com.ebig.sp.SpDevice;
 import com.ebig.utils.TimeUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.ebig.utils.FactoryCodeIns.FactoryCode;
 
 public class ApiParamsForm {
 
@@ -18,13 +17,13 @@ public class ApiParamsForm {
     public ApiParamsForm(JSONObject data) {
         this.requestId = System.currentTimeMillis()+"";
         this.operationTime = TimeUtils.getCurrentDate();
-        this.factoryCode = FactoryCodeIns.getCode();
+        this.factoryCode = SpDevice.getCode();
         this.data = data;
     }
     public ApiParamsForm() {
         this.requestId = System.currentTimeMillis()+"";
         this.operationTime = TimeUtils.getCurrentDate();
-        this.factoryCode = FactoryCodeIns.getCode();
+        this.factoryCode = SpDevice.getCode();
     }
 
     public String getRequestId() {
@@ -74,7 +73,7 @@ public class ApiParamsForm {
         try {
             jsonObject.put("requestId",System.currentTimeMillis()+"");
             jsonObject.put("operationTime", TimeUtils.getCurrentDate());
-            jsonObject.put("factoryCode",FactoryCodeIns.getCode());
+            jsonObject.put("factoryCode",SpDevice.getCode());
             jsonObject.put("data",data);
         } catch (JSONException e) {
             e.printStackTrace();

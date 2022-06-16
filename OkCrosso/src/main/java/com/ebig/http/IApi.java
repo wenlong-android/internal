@@ -1,14 +1,16 @@
 package com.ebig.http;
 
+import org.json.JSONArray;
+
 public interface IApi {
     Api resetHost(String host);
     /**
      * 服务接口
      */
     ApiRequest registerDevice(String factoryCode,String tenantId,String machineName);
-    ApiRequest saveDeviceSettings(String json);
-    ApiRequest getDeviceSettings(String arrJson);
-    ApiRequest deleteDeviceSettings(String arrJson);
+    ApiRequest saveDeviceSettings(String key,String value);
+    ApiRequest getDeviceSettings(JSONArray arrJson);
+    ApiRequest deleteDeviceSettings(JSONArray arrJson);
     ApiRequest getTenantList();
     ApiRequest saveUserBindings(String json);
     ApiRequest deleteUserBindings(String json);

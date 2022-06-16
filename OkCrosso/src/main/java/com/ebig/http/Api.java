@@ -3,6 +3,7 @@ package com.ebig.http;
 import com.ebig.utils.GsonUtils;
 import com.ebig.utils.JsonUtils;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Api extends ApiHelper implements IApi {
@@ -44,9 +45,10 @@ public class Api extends ApiHelper implements IApi {
      * 对应db:
      */
     @Override
-    public ApiRequest saveDeviceSettings(String json) {
+    public ApiRequest saveDeviceSettings(String key,String value) {
         String url = ApiHelper.makeUrl(true, host, "saveDeviceSettings", ApiType.machine);
-        ApiRequest request=new ApiRequest(url,json);
+        JSONObject params=JsonUtils.createStting(key,value);
+        ApiRequest request=new ApiRequest(url,jsonMake(params));
         return request;
     }
     /**
@@ -55,9 +57,10 @@ public class Api extends ApiHelper implements IApi {
      * 对应db:
      */
     @Override
-    public ApiRequest getDeviceSettings(String arrJson) {
+    public ApiRequest getDeviceSettings(JSONArray arrJson) {
         String url = ApiHelper.makeUrl(true, host, "getDeviceSettings", ApiType.machine);
-        ApiRequest request=new ApiRequest(url,arrJson);
+        JSONObject params=JsonUtils.crateSettingArr(arrJson);
+        ApiRequest request=new ApiRequest(url,jsonMake(params));
         return request;
     }
     /**
@@ -66,9 +69,10 @@ public class Api extends ApiHelper implements IApi {
      * 对应db:
      */
     @Override
-    public ApiRequest deleteDeviceSettings(String arrJson) {
+    public ApiRequest deleteDeviceSettings(JSONArray arrJson) {
         String url = ApiHelper.makeUrl(true, host, "deleteDeviceSettings", ApiType.machine);
-        ApiRequest request=new ApiRequest(url,arrJson);
+        JSONObject params=JsonUtils.crateSettingArr(arrJson);
+        ApiRequest request=new ApiRequest(url,jsonMake(params));
         return request;
     }
 
