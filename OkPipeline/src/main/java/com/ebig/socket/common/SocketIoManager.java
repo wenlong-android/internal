@@ -57,15 +57,9 @@ public class SocketIoManager extends SocketIoBase {
      */
     @Override
     public void accept(String uuid, String host, String cmd) {
-        String orginHost=PipeBus.l().getHost();
-        if (!host.equals(orginHost)){
-            ELog.print(host+ " getHost:" + orginHost);
-            return ;
-        } else {
+        ELog.print("SocketIoManager accept host:"+host+" ,cmd:"+cmd);
             CmdResultInfo rawInfo = SoketIoFactory.dispatchMatch(uuid, host, cmd);
             createCmdTaskChainAndHandleIt(rawInfo);
-        }
-
     }
     /**
      * 创建不同指令的处理handle的责任链并进行处理

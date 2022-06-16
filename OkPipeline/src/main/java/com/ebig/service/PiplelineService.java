@@ -81,7 +81,10 @@ public class PiplelineService extends Service implements PipeServerCall {
      private final ICmdServiceCall cmdServiceCall=new ICmdServiceCall.Stub() {
          @Override
          public void regist(IResultListenner call) throws RemoteException {
-             reomteResult.register(call);
+             if (call!=null){
+                 ELog.print("onServiceConnected onBind regist:"+call.toString());
+                 reomteResult.register(call);
+             }
          }
 
          @Override

@@ -1,5 +1,6 @@
 package com.ebig.socket.dispatchWrite.base;
 
+import com.ebig.idl.CommonCall;
 import com.ebig.socket.dispatchWrite.backLight.BackLightAnSender;
 import com.ebig.socket.dispatchWrite.colorLight.CLightParam;
 import com.ebig.socket.dispatchWrite.colorLight.ColorLightAnSender;
@@ -84,8 +85,8 @@ public class EbWriter implements ICommand {
     }
 
     @Override
-    public ScanAnSender scan() {
-        return scanSender.scan();
+    public ScanAnSender scan(CommonCall<String> call) {
+        return scanSender.scan(call);
     }
 
     @Override

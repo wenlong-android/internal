@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey;
 import com.ebig.crosso.manager.type.AopField;
 
 
-@Entity(tableName = "ThDbInfo")
-public class ThDbInfo {
+@Entity(tableName = "ThDbEntity")
+public class ThDbEntity {
     @PrimaryKey(autoGenerate = false)
     @NonNull
     @ColumnInfo(name = "id")
@@ -19,18 +19,16 @@ public class ThDbInfo {
     @ColumnInfo(name="host")
     private String host;
     @ColumnInfo(name="temperature")
-    double temperatureInt;
+    double temperature;
     @ColumnInfo(name="humidity")
-    double humidityInt;
+    double humidity;
     @ColumnInfo(name="json")
     String json;
     @ColumnInfo(name="commitState")
     private int commit;
 
-    public ThDbInfo() {
+    public ThDbEntity() {
     }
-
-
 
     public long getId() {
         return id;
@@ -56,20 +54,20 @@ public class ThDbInfo {
         this.host = host;
     }
 
-    public double getTemperatureInt() {
-        return temperatureInt;
+    public double getTemperature() {
+        return temperature;
     }
 
-    public void setTemperatureInt(double temperatureInt) {
-        this.temperatureInt = temperatureInt;
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
     }
 
-    public double getHumidityInt() {
-        return humidityInt;
+    public double getHumidity() {
+        return humidity;
     }
 
-    public void setHumidityInt(double humidityInt) {
-        this.humidityInt = humidityInt;
+    public void setHumidity(double humidity) {
+        this.humidity = humidity;
     }
 
     public String getJson() {
@@ -90,12 +88,12 @@ public class ThDbInfo {
 
     @Override
     public String toString() {
-        return "ThDbInfo{" +
+        return "ThDbEntity{" +
                 "id=" + id +
                 ", uuid='" + uuid + '\'' +
                 ", host='" + host + '\'' +
-                ", temperatureInt=" + temperatureInt +
-                ", humidityInt=" + humidityInt +
+                ", temperature=" + temperature +
+                ", humidity=" + humidity +
                 ", json='" + json + '\'' +
                 ", commit=" + commit +
                 '}';

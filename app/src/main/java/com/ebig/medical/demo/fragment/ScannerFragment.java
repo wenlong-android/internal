@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import com.ebig.annotation.ThreadMain;
 import com.ebig.idl.CommonCall;
+import com.ebig.log.ELog;
 import com.ebig.medical.demo.R;
 import com.ebig.medical.demo.R2;
 import com.ebig.socket.idl.ScannerListenner;
@@ -37,12 +38,6 @@ public class ScannerFragment extends BaseFrament {
 
     @Override
     protected void onCreate() {
-        Listenner4Scanner.setReaderCall(new CommonCall<String>() {
-            @Override
-            public void onCommonCall(String result) {
-                setResult(btnResult, result);
-            }
-        });
     }
 
     @ThreadMain
@@ -82,15 +77,11 @@ public class ScannerFragment extends BaseFrament {
 
     @OnClick(R2.id.btn_start)
     public void onClick() {
-        jesse.commander().withScanner().scan().addListenner(new ScannerListenner() {
+        jesse.commander().withScanner().scan(new CommonCall<String>() {
             @Override
-            public void onScanResult(String result) {
-                btnResult.setText(result);
-            }
-
-            @Override
-            public void onFail(String msg) {
-
+            public void onCommonCall(String result) {
+                ELog.print("onCommonCall:"+result);
+                setResult(btnResult,result);
             }
         }).sendTo(1, 0, 0);
     }

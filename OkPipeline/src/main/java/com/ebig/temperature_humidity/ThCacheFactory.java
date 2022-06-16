@@ -3,8 +3,8 @@ package com.ebig.temperature_humidity;
 import com.ebig.annotation.ThreadComputation;
 import com.ebig.annotation.ThreadIo;
 import com.ebig.common.Team;
-import com.ebig.crosso.manager.db.upload.ThDbInfo;
-import com.ebig.crosso.manager.db.upload.UploaManager;
+import com.ebig.crosso.manager.db.upload.ThDbEntity;
+import com.ebig.crosso.manager.db.upload.ThDataImpl;
 import com.ebig.socket.bean.TeHuEntity;
 import com.ebig.socket.bean.ThEntity;
 import com.ebig.utils.GsonUtils;
@@ -30,11 +30,11 @@ public class ThCacheFactory {
         final long timeStamp = System.currentTimeMillis();
         TeHuEntity.DataBean bean = new TeHuEntity.DataBean(t, h);
         TeHuEntity teHuEntity = new TeHuEntity(timeStamp, 1, uuid, bean);
-        ThDbInfo info = new ThDbInfo();
+        ThDbEntity info = new ThDbEntity();
         info.setHost(host);
         info.setUuid(uuid);
-        info.setTemperatureInt(t);
-        info.setHumidityInt(h);
+        info.setTemperature(t);
+        info.setHumidity(h);
         info.setId(timeStamp);
         //
         inserDbfirst(info, teHuEntity);
@@ -114,12 +114,12 @@ public class ThCacheFactory {
     }
 
     @ThreadIo
-    private static void inserDbfirst(ThDbInfo info, TeHuEntity teHuEntity) {
+    private static void inserDbfirst(ThDbEntity info, TeHuEntity teHuEntity) {
         String gson = GsonUtils.toJson(teHuEntity);
         info.setCommit(0);
         info.setJson(gson);
         //入库
-        UploaManager.inser(info);
+        ThDataImpl.inser(info);
         //提交给服务器
         ThClient.send(gson);
         //UpLoadDb.with(AppGlobals.getApplication()).getTHDao().insert(info);

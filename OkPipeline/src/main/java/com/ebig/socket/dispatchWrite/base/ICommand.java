@@ -1,4 +1,5 @@
 package com.ebig.socket.dispatchWrite.base;
+import com.ebig.idl.CommonCall;
 import com.ebig.socket.dispatchWrite.backLight.BackLightAnSender;
 import com.ebig.socket.dispatchWrite.colorLight.CLightParam;
 import com.ebig.socket.dispatchWrite.colorLight.ColorLightAnSender;
@@ -30,7 +31,7 @@ public interface ICommand {
     /*选择扫描头指令*/
     ScanAnSender withScanner();
     /*开启扫描头*/
-    public ScanAnSender scan();
+    public ScanAnSender scan(CommonCall<String> call);
     /*选择电子秤指令*/
     ScaleAnSender withScale();
     /*电子秤清零*/

@@ -7,9 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.ebig.crosso.manager.db.upload.ThDao;
-import com.ebig.crosso.manager.db.upload.ThDbInfo;
-import com.ebig.crosso.manager.type.AopDao;
-import com.ebig.crosso.manager.type.AopDbInfo;
+import com.ebig.crosso.manager.db.upload.ThDbEntity;
 
 
 //    /**
@@ -23,7 +21,7 @@ import com.ebig.crosso.manager.type.AopDbInfo;
 //     * @return
 //     */
 
-@Database(entities = {ThDbInfo.class}, version = 1, exportSchema = false)
+@Database(entities = {ThDbEntity.class}, version = 1, exportSchema = false)
 public abstract class UpLoadDb extends RoomDatabase {
     private static final String dbName="UpLoadData";
     private static UpLoadDb database;

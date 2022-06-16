@@ -19,8 +19,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.ebig.annotation.ThreadIo;
 import com.ebig.annotation.ThreadMain;
 import com.ebig.crosso.manager.Crosso;
-import com.ebig.crosso.manager.db.upload.ThDbInfo;
-import com.ebig.crosso.manager.db.upload.UploaManager;
+import com.ebig.crosso.manager.db.upload.ThDbEntity;
+import com.ebig.crosso.manager.db.upload.ThDataImpl;
 import com.ebig.crosso.utils.PermissionConsts;
 import com.ebig.http.Api;
 import com.ebig.http.ApiCall;
@@ -131,11 +131,12 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
                 }
             });
         }
+        print();
     }
 
     @ThreadIo
     private void print() {
-        List<ThDbInfo> list = UploaManager.getList();
+        List<ThDbEntity> list = ThDataImpl.getWith12hourData();
         for (int i = 0; i < list.size(); i++) {
             ELog.print(list.get(i).toString());
         }

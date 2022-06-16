@@ -9,6 +9,8 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 
 import com.ebig.log.ELog;
 import com.ebig.socket.common.PipeBus;
@@ -17,6 +19,7 @@ import com.ebig.socket.entity.RemoteIndex;
 import com.ebig.socket.entity.RomoteCmd;
 import com.ebig.utils.AppGlobals;
 import com.google.gson.Gson;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.minjie.libcmd.ICmdServiceCall;
 import com.minjie.libcmd.IResultListenner;
 
@@ -41,7 +44,14 @@ public class CmdServiceManager implements ICmdService {
 //        } else {
 //            Log.i("onServiceConnected", "服务已经启动");
 //        }
-
+//        LiveEventBus
+//                .get("some_key", String.class)
+//                .observeForever(new Observer<String>() {
+//                    @Override
+//                    public void onChanged(String s) {
+//                        ELog.print("onChanged:"+s);
+//                    }
+//                });
     }
 
     @Override
@@ -55,7 +65,6 @@ public class CmdServiceManager implements ICmdService {
                     if (index == RemoteIndex.messageRead) {
                         RomoteCmd info = new Gson().fromJson(json, RomoteCmd.class);
                         SocketIoManager.load().accept(info.getUuid(), info.getHost(), info.getCmd());
-
                         PipeBus.l().deviceConnect(info.getUuid(), info.getHost());
                     } else if (index == RemoteIndex.rabbitMsg) {
 

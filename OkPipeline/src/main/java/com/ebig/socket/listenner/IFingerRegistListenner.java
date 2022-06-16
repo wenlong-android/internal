@@ -1,6 +1,6 @@
 package com.ebig.socket.listenner;
 
-public interface IFingerRegistListenner {
+public interface IFingerRegistListenner  {
     void startAndPutFinger2Regiest();
     void firstRegistSuccess();
     void secondTimePutFinger2Regiest();

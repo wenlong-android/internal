@@ -1,18 +1,16 @@
 package com.ebig.crosso.manager.db.upload;
 
-import com.ebig.annotation.ThreadIo;
 import com.ebig.crosso.manager.db.UpLoadDb;
 import com.ebig.utils.AppGlobals;
-import com.ebig.utils.TimeUtils;
 
 import java.util.List;
 
-public class UploaManager {
-    public static void inser(ThDbInfo info) {
+public class ThDataImpl {
+    public static void inser(ThDbEntity info) {
         UpLoadDb.with(AppGlobals.getApplication()).getTHDao().insert(info);
     }
-
-    public static List<ThDbInfo> getList(){
+    /*获取温湿度最近12小时数据*/
+    public static List<ThDbEntity> getWith12hourData(){
         long time= System.currentTimeMillis()-43200000;
         return  UpLoadDb.with(AppGlobals.getApplication()).getTHDao().get12hours(time);
     }

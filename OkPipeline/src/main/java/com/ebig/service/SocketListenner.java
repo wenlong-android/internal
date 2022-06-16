@@ -5,6 +5,7 @@ import android.os.RemoteCallbackList;
 
 import com.ebig.log.ELog;
 import com.ebig.socket.common.SocketInterfaces;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.minjie.libcmd.IResultListenner;
 
 public class SocketListenner implements SocketInterfaces {
@@ -28,6 +29,9 @@ public class SocketListenner implements SocketInterfaces {
     @Override
     public void messageRead(String uuid, String ipHost, String cmd) {
         ELog.print("messageRead uuid:" + uuid+" ipHost:"+ipHost+" cmd:"+cmd);
+//        LiveEventBus
+//                .get("some_key")
+//                .postAcrossProcess("some_value");
         RemoteFixUtils.cmd(uuid, ipHost, cmd, reomteResult);
     }
 

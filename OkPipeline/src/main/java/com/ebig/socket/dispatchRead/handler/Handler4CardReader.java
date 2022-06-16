@@ -20,7 +20,7 @@ public class Handler4CardReader implements BaseHandler {
            ELog.print("Handler读卡器处理:"+info.getCmd()+",data:"+info.getData());
          //   dispatchSevice.onHearBeat(System.currentTimeMillis());
             Listenner4CardReader.onReceive(info.getData());
-            PipeBus.l().receive(info);
+            //PipeBus.l().receive(info);
         }else {
             handler.nextIndex(info );
         }

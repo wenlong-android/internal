@@ -2,6 +2,7 @@ package com.ebig.socket.common;
 
 
 
+import com.ebig.log.ELog;
 import com.ebig.socket.entity.CmdResultInfo;
 import com.ebig.socket.entity.CmdRequestInfo;
 import com.ebig.socket.idl.PipeCall;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 
 /*事件和数据监听*/
 public class PipeBus implements PipeCall, PipeThCall, PipeSocketMonitorCall, PipeReadAndWriteCall {
-    private String host;
+
     private static Ipipeline pipeline;
     private HashMap<String, Object> listenner = new HashMap<>();
 
@@ -40,9 +41,7 @@ public class PipeBus implements PipeCall, PipeThCall, PipeSocketMonitorCall, Pip
         return this;
     }
 
-    public String getHost() {
-        return host;
-    }
+
 
     /*事件和数据监听*/
     @Override
@@ -63,6 +62,7 @@ public class PipeBus implements PipeCall, PipeThCall, PipeSocketMonitorCall, Pip
     /*事件和数据监听*/
     @Override
     public void deviceConnect(String uuid, String ipHost) {
+        ELog.print("deviceConnect:"+ipHost);
         if (listenner.containsKey(PipeSocketMonitorCall.class.getSimpleName())) {
             ((PipeSocketMonitorCall) listenner.get(PipeReadAndWriteCall.class.getSimpleName())).deviceConnect(uuid, ipHost);
         }

@@ -41,15 +41,13 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-     implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'io.netty:netty-all:4.1.9.Final'
     implementation 'org.reflections:reflections:0.9.12'
     implementation project(':OkCommon')
     implementation project(':OkCrosso')
     implementation 'com.rabbitmq:amqp-client:5.7.0'
-   // implementation 'io.github.jeremyliao:live-event-bus-x:1.8.0'
-    implementation 'com.jeremyliao:live-event-bus-x:1.7.3'
-   // implementation 'io.github.jeremyliao:lebx-processor-gson:1.8.0'
+    implementation 'io.github.jeremyliao:live-event-bus-x:1.8.0'
 
 
 }
