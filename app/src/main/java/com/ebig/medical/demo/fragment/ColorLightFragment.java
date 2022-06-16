@@ -5,11 +5,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
-import com.ebig.log.ELog;
 import com.ebig.medical.demo.R;
 import com.ebig.medical.demo.R2;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.socket.dispatchWrite.colorLight.CLightParam;
-import com.ebig.socket.idl.SenderColorLightListenner;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -125,16 +124,6 @@ public class ColorLightFragment extends BaseFrament {
 
         CLightParam param = new CLightParam(config);
 
-        jesse.commander().withCloloLight().config(param).addListenner(new SenderColorLightListenner() {
-            @Override
-            public void ok() {
-               ELog.print("SenderColorLightListenner ok");
-            }
-
-            @Override
-            public void onFail(String msg) {
-
-            }
-        }).sendTo(1, 0, 0);
+        AndPipe.colorLight().config(param) .sendTo(1, 0, 0);
     }
 }

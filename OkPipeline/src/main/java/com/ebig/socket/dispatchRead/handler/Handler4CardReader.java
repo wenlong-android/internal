@@ -3,7 +3,6 @@ package com.ebig.socket.dispatchRead.handler;
 import com.ebig.log.ELog;
 import com.ebig.socket.listenner.Listenner4CardReader;
 import com.ebig.socket.entity.CmdResultInfo;
-import com.ebig.socket.common.PipeBus;
 import com.ebig.socket.entity.CmdType;
 
 public class Handler4CardReader implements BaseHandler {
@@ -20,7 +19,7 @@ public class Handler4CardReader implements BaseHandler {
            ELog.print("Handler读卡器处理:"+info.getCmd()+",data:"+info.getData());
          //   dispatchSevice.onHearBeat(System.currentTimeMillis());
             Listenner4CardReader.onReceive(info.getData());
-            //PipeBus.l().receive(info);
+            //AndPipe.l().receive(info);
         }else {
             handler.nextIndex(info );
         }

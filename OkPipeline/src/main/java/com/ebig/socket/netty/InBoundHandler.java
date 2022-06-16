@@ -2,9 +2,9 @@ package com.ebig.socket.netty;
 
 
 import com.ebig.log.ELog;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.utils.HexUtils;
 import com.ebig.socket.common.Indicate;
-import com.ebig.socket.common.PipeBus;
 import com.ebig.socket.idl.PipeSocketMonitorCall;
 import com.ebig.socket.utils.IpUtils;
 
@@ -31,7 +31,7 @@ public class InBoundHandler extends SimpleChannelInboundHandler<byte[]> {
         GatewayService.addGatewayChannel(ip, (SocketChannel) ctx.channel());
         ELog.print("Netty CLIENT" + ctx.channel().id().asLongText());
         ELog.print("Netty CLIENT" + IpUtils.getRemoteAddress(ctx) + " 接入连接");
-        PipeBus.l().deviceConnect(uuid, ip);
+        AndPipe.l().deviceConnect(uuid, ip);
         inBoundMessageCall.deviceConnect(uuid, ip);
     }
 
@@ -42,7 +42,7 @@ public class InBoundHandler extends SimpleChannelInboundHandler<byte[]> {
         String uuid = IpUtils.getUuid(ctx);
         inBoundMessageCall.deviceDisConnect(uuid, ip);
         GatewayService.removeGatewayChannel(ip);
-        PipeBus.l().deviceDisConnect(uuid, ip);
+        AndPipe.l().deviceDisConnect(uuid, ip);
         ELog.print("Netty CLIENT" + IpUtils.getRemoteAddress(ctx) + " 断开连接");
         ctx.close();
     }
@@ -86,22 +86,22 @@ public class InBoundHandler extends SimpleChannelInboundHandler<byte[]> {
         if (evt instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) evt;
             if (event.state() == IdleState.READER_IDLE) {
-                PipeBus.l().readOutTime(uuid, ip);
+                AndPipe.l().readOutTime(uuid, ip);
                 ELog.print("Netty Client: " + ip + " READER_IDLE 读超时");
                 inBoundMessageCall.readOutTime(uuid, ip);
                 ctx.disconnect();
                 Indicate.l().readOutTime(uuid, ip, true);
-                PipeBus.l().readOutTime(uuid, ip);
+                AndPipe.l().readOutTime(uuid, ip);
             } else if (event.state() == IdleState.WRITER_IDLE) {
-                PipeBus.l().writeOutTime(uuid, ip);
+                AndPipe.l().writeOutTime(uuid, ip);
                 ELog.print("Netty Client: " + ip + " WRITER_IDLE 写超时");
                 inBoundMessageCall.writeOutTime(uuid, ip);
                 ctx.disconnect();
                 Indicate.l().writeOutTime(uuid, ip, true);
-                PipeBus.l().writeOutTime(uuid, ip);
+                AndPipe.l().writeOutTime(uuid, ip);
             } else if (event.state() == IdleState.ALL_IDLE) {
-                PipeBus.l().outTime(uuid, ip);
-                PipeBus.l().outTime(uuid, ip);
+                AndPipe.l().outTime(uuid, ip);
+                AndPipe.l().outTime(uuid, ip);
                 ELog.print("Netty Client: " + ip + " ALL_IDLE 总超时");
                 inBoundMessageCall.outTime(uuid, ip);
                 ctx.disconnect();

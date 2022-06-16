@@ -17,10 +17,10 @@ public abstract class AnSender {
         return this;
     }
 
-    public AnSender addListenner(SenderListenner listenner) {
-        taskInfo.addListnner(listenner);
-        return this;
-    }
+//    public AnSender addListenner(SenderListenner listenner) {
+//        taskInfo.addListnner(listenner);
+//        return this;
+//    }
 
     /**
      * 发送指令

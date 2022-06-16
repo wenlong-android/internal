@@ -113,18 +113,18 @@ public class LedFragment extends BaseFrament {
             indexTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    ICommand.withLcd().show(new LcdParam02CleanAll()).sendTo(1, 1, index);
+                    ICommand.lcd().show(new LcdParam02CleanAll()).sendTo(1, 1, index);
                     index++;
                     if (index>5){
                         indexTimer.cancel();
                     }
                 }
             },0,500);
-//            ICommand.withLcd().show(new LcdParam02CleanAll()).sendTo(1, 1, 1);
-//            ICommand.withLcd().show(new LcdParam02CleanAll()).sendTo(1, 1, 2);
+//            ICommand.lcd().show(new LcdParam02CleanAll()).sendTo(1, 1, 1);
+//            ICommand.lcd().show(new LcdParam02CleanAll()).sendTo(1, 1, 2);
 
-//            ICommand.withLcd().show(new LcdParam02CleanAll()).sendTo(1, 1, 4);
-//            ICommand.withLcd().show(new LcdParam02CleanAll()).sendTo(1, 1, 5);
+//            ICommand.lcd().show(new LcdParam02CleanAll()).sendTo(1, 1, 4);
+//            ICommand.lcd().show(new LcdParam02CleanAll()).sendTo(1, 1, 5);
 
 
         } else if (viewId == R.id.set_spec) {
@@ -143,7 +143,7 @@ public class LedFragment extends BaseFrament {
                 shelf.setExpand1(90+"");
                 String smg = shelf.getFinalCmdString();
                 ELog.print("getFinalCmdString:" + smg + " len:" + smg.length());
-                ICommand.withLcd().show(shelf).sendTo(1, 1, i);
+                ICommand.lcd().show(shelf).sendTo(1, 1, i);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -165,7 +165,7 @@ public class LedFragment extends BaseFrament {
                 shelf.setNumber((10*i)+"");
                 String smg = shelf.getFinalCmdString();
                 ELog.print("getFinalCmdString:" + smg + " len:" + smg.length());
-                ICommand.withLcd().show(shelf).sendTo(1, 1, i);
+                ICommand.lcd().show(shelf).sendTo(1, 1, i);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -188,7 +188,7 @@ public class LedFragment extends BaseFrament {
                 shelf.setNumber((10*i)+"");
                 String smg = shelf.getFinalCmdString();
                 ELog.print("getFinalCmdString:" + smg + " len:" + smg.length());
-                ICommand.withLcd().show(shelf).sendTo(1, 1, i);
+                ICommand.lcd().show(shelf).sendTo(1, 1, i);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

@@ -1,8 +1,8 @@
 package com.ebig.socket.dispatchRead.handler;
 
 import com.ebig.log.ELog;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.socket.entity.CmdResultInfo;
-import com.ebig.socket.common.PipeBus;
 import com.ebig.socket.entity.CmdType;
 import com.ebig.socket.listenner.Listenner4Scanner;
 import com.ebig.utils.HexUtils;
@@ -28,7 +28,7 @@ public class Handler4Scander implements BaseHandler {
             String data=HexUtils.deUnicode2(fix);
            ELog.print("扫描头扫描数据为："+data);
             Listenner4Scanner.onScanResult(data);
-            PipeBus.l().receive(info);
+            AndPipe.l().receive(info);
 //            if (answer.getListenner()!=null){
 //                ((ScannerListenner)answer.getListenner()).onScanResult(HexUtils.deUnicode2(fix));
 //            }

@@ -13,8 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.ebig.socket.common.PipeBus;
-import com.ebig.socket.common.Ipipeline;
 
 
 import butterknife.ButterKnife;
@@ -22,7 +20,7 @@ import butterknife.Unbinder;
 
 public abstract class BaseFrament extends Fragment implements BaseView, BaseFragmentIntefaces {
 
-    protected Ipipeline jesse;
+
     protected abstract String getTagName();
 
     protected abstract int setContentView();
@@ -43,7 +41,7 @@ public abstract class BaseFrament extends Fragment implements BaseView, BaseFrag
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ARouter.getInstance().inject(this);
-        jesse= PipeBus.l().build();
+
         tag = getTagName();
         int layout = setContentView();
         View view = inflater.inflate(layout, container, false);

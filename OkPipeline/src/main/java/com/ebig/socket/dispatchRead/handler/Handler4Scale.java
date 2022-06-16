@@ -1,8 +1,8 @@
 package com.ebig.socket.dispatchRead.handler;
 
 import com.ebig.log.ELog;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.socket.entity.CmdResultInfo;
-import com.ebig.socket.common.PipeBus;
 import com.ebig.socket.entity.CmdType;
 import com.ebig.utils.HexUtils;
 
@@ -30,7 +30,7 @@ public class Handler4Scale implements BaseHandler {
             String fix=msg.substring(2,len-2);
            ELog.print("截取："+fix);
            ELog.print(HexUtils.deUnicode(fix));
-            PipeBus.l().receive(info);
+            AndPipe.l().receive(info);
         } else {
             handler.nextIndex(info);
         }

@@ -3,13 +3,13 @@ package com.ebig.medical.demo.fragment;
 import android.view.View;
 import android.widget.Button;
 
+import com.ebig.idl.CommonCall;
 import com.ebig.log.ELog;
 import com.ebig.medical.demo.R;
 import com.ebig.medical.demo.R2;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.socket.entity.FingerResult;
 import com.ebig.socket.dispatchWrite.finger.FingerParam;
-import com.ebig.socket.idl.FingerGetAllIdListenner;
-import com.ebig.socket.idl.SenderListenner;
 import com.ebig.socket.listenner.IFingerRegistListenner;
 import com.ebig.socket.listenner.Listenner4Finger;
 import com.ebig.utils.HexUtils;
@@ -92,35 +92,83 @@ public class FingerFragment extends BaseFrament implements IFingerRegistListenne
         int viewId = view.getId();
         if (viewId == R.id.btn_regist) {
             //之前支持 pid 18 gid 36
-            jesse.commander().withFinger()
-                    .regist(new FingerParam(FingerResult.regist, 1, 1)).sendTo(1, 0, 0);
-        } else if (viewId == R.id.btn_cancle) {
-            jesse.commander().withFinger()
-                    .cancle(new FingerParam(FingerResult.cancle, 1, 1)).sendTo(1, 0, 0);
-        } else if (viewId == R.id.btn_delete) {
-
-            jesse.commander().withFinger().delete(new FingerParam(FingerResult.delete, 1, 1)).sendTo(1, 0, 0);
-        } else if (viewId == R.id.btn_deleteAll) {
-
-            jesse.commander().withFinger().deleteAll(new FingerParam(FingerResult.deleteAll, 1, 1)).sendTo(1, 0, 0);
-
-        } else if (viewId == R.id.btn_getAllId) {
-            jesse.commander().withFinger()
-                    .getFingerId(new FingerParam(FingerResult.getAllId, 1, 1))
-                    .addListenner(new FingerGetAllIdListenner() {
+            AndPipe.finger()
+                    .regist(new FingerParam(FingerResult.regist, 1, 1), new IFingerRegistListenner() {
                         @Override
-                        public void onResult(List<String> result) {
-                            for (int i = 0; i < result.size(); i++) {
-                               ELog.print("获取到数据id "+i+" :" + result.get(i));
-                            }
+                        public void startAndPutFinger2Regiest() {
 
                         }
 
                         @Override
-                        public void onFail(String msg) {
+                        public void firstRegistSuccess() {
+
+                        }
+
+                        @Override
+                        public void secondTimePutFinger2Regiest() {
+
+                        }
+
+                        @Override
+                        public void secondRegistSuccess() {
+
+                        }
+
+                        @Override
+                        public void thirdAndPutFinger2Regiest() {
+
+                        }
+
+                        @Override
+                        public void thirdRegistSuccess() {
+
+                        }
+
+                        @Override
+                        public void tooMuchDifferenceRegisterAgain() {
+
+                        }
+
+                        @Override
+                        public void registFinallySuccess() {
 
                         }
                     }).sendTo(1, 0, 0);
+        } else if (viewId == R.id.btn_cancle) {
+            AndPipe.finger()
+                    .cancle(new FingerParam(FingerResult.cancle, 1, 1), new CommonCall<Boolean>() {
+                        @Override
+                        public void onCommonCall(Boolean aBoolean) {
+                            ELog.print("onCommonCall:"+aBoolean);
+                        }
+                    }).sendTo(1, 0, 0);
+        } else if (viewId == R.id.btn_delete) {
+
+            AndPipe.finger().delete(new FingerParam(FingerResult.delete, 1, 1), new CommonCall<Boolean>() {
+                @Override
+                public void onCommonCall(Boolean aBoolean) {
+                    ELog.print("onCommonCall:"+aBoolean);
+                }
+            }).sendTo(1, 0, 0);
+        } else if (viewId == R.id.btn_deleteAll) {
+            AndPipe.finger().deleteAll(new FingerParam(FingerResult.deleteAll, 1, 1), new CommonCall<Boolean>() {
+                @Override
+                public void onCommonCall(Boolean aBoolean) {
+                    ELog.print("onCommonCall:"+aBoolean);
+                }
+            }).sendTo(1, 0, 0);
+
+        } else if (viewId == R.id.btn_getAllId) {
+            AndPipe.finger()
+                    .getFingerId(new FingerParam(FingerResult.getAllId, 1, 1),
+                            new CommonCall<List<String>>() {
+                                @Override
+                                public void onCommonCall(List<String> list) {
+                                    if (list!=null)
+                                    ELog.print("onCommonCall:"+list.toString());
+                                }
+                            }
+                    ).sendTo(1, 0, 0);
         } else if (viewId == R.id.btn_getIdTemplates) {
         } else if (viewId == R.id.btn_loadTemplates) {
         }

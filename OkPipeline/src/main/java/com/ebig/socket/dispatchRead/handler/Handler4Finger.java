@@ -1,6 +1,6 @@
 package com.ebig.socket.dispatchRead.handler;
 import com.ebig.log.ELog;
-import com.ebig.socket.common.PipeBus;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.socket.entity.FingerCode;
 import com.ebig.socket.entity.TypeConstance;
 import com.ebig.socket.listenner.Listenner4Finger;
@@ -26,7 +26,7 @@ public class Handler4Finger implements BaseHandler {
     @Override
     public void onNextHanlder(CmdResultInfo info) {
         if (CmdType.isFingerUp(info.getOrder())) {
-            PipeBus.l().receive(info);
+            AndPipe.l().receive(info);
 
             List<String> dataArr = StrUtils.spiltHex(info.getData());
             String resultCode = dataArr.get(0);

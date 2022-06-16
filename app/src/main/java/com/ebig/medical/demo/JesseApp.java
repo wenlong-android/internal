@@ -6,9 +6,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.ebig.crosso.manager.Crosso;
 import com.ebig.log.ELog;
 import com.ebig.regist.RegistManager;
-import com.ebig.socket.common.PipeBus;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.sp.BaseSp;
-import com.ebig.utils.StrUtils;
 
 public class JesseApp extends Application {
     @Override
@@ -24,7 +23,7 @@ public class JesseApp extends Application {
 
         Crosso.with(this).defaultConfig().debug(true).start();
 
-        PipeBus.l().with().build();
+        AndPipe.l().make().start();
 
         RegistManager.regist(this);
     }

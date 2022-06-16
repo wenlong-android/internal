@@ -1,8 +1,12 @@
 package com.ebig.socket.common;
 
 
-
 import com.ebig.log.ELog;
+import com.ebig.socket.dispatchWrite.base.ICommand;
+import com.ebig.socket.dispatchWrite.colorLight.ColorLightAnSender;
+import com.ebig.socket.dispatchWrite.finger.FingerAnSender;
+import com.ebig.socket.dispatchWrite.lock.LockAnSender;
+import com.ebig.socket.dispatchWrite.scander.ScanAnSender;
 import com.ebig.socket.entity.CmdResultInfo;
 import com.ebig.socket.entity.CmdRequestInfo;
 import com.ebig.socket.idl.PipeCall;
@@ -10,25 +14,24 @@ import com.ebig.socket.idl.PipeReadAndWriteCall;
 import com.ebig.socket.idl.PipeSocketMonitorCall;
 import com.ebig.socket.idl.PipeIdelCall;
 import com.ebig.socket.idl.PipeThCall;
-import com.ebig.utils.StrUtils;
 
 import java.util.HashMap;
 
 /*事件和数据监听*/
-public class PipeBus implements PipeCall, PipeThCall, PipeSocketMonitorCall, PipeReadAndWriteCall {
+public class AndPipe implements PipeCall, PipeThCall, PipeSocketMonitorCall, PipeReadAndWriteCall {
 
     private static Ipipeline pipeline;
     private HashMap<String, Object> listenner = new HashMap<>();
 
     private static class Home {
-        private static PipeBus home = new PipeBus();
+        private static AndPipe home = new AndPipe();
     }
 
-    public static PipeBus l() {
+    public static AndPipe l() {
         return Home.home;
     }
 
-    public PipeBus with() {
+    public AndPipe make() {
         pipeline = new Pipeline.Cosmetic()
                 .debug(true)
                 .setReadFrequency(30)
@@ -40,7 +43,6 @@ public class PipeBus implements PipeCall, PipeThCall, PipeSocketMonitorCall, Pip
                 .makeUp();
         return this;
     }
-
 
 
     /*事件和数据监听*/
@@ -62,7 +64,7 @@ public class PipeBus implements PipeCall, PipeThCall, PipeSocketMonitorCall, Pip
     /*事件和数据监听*/
     @Override
     public void deviceConnect(String uuid, String ipHost) {
-        ELog.print("deviceConnect:"+ipHost);
+        ELog.print("deviceConnect:" + ipHost);
         if (listenner.containsKey(PipeSocketMonitorCall.class.getSimpleName())) {
             ((PipeSocketMonitorCall) listenner.get(PipeReadAndWriteCall.class.getSimpleName())).deviceConnect(uuid, ipHost);
         }
@@ -124,29 +126,48 @@ public class PipeBus implements PipeCall, PipeThCall, PipeSocketMonitorCall, Pip
     }
 
     public void addIdelListenner(PipeIdelCall call) {
-        addListenner(PipeIdelCall.class.getSimpleName(),call);
-    }
-    public void addThListnenner(PipeThCall call){
-        addListenner(PipeThCall.class.getSimpleName(),call);
+        addListenner(PipeIdelCall.class.getSimpleName(), call);
     }
 
-    public void addPipeChatListenner(PipeReadAndWriteCall call){
-        addListenner(PipeReadAndWriteCall.class.getSimpleName(),call);
+    public void addThListnenner(PipeThCall call) {
+        addListenner(PipeThCall.class.getSimpleName(), call);
     }
 
-    public void addPipeConnectListenner(PipeSocketMonitorCall call){
-        addListenner(PipeSocketMonitorCall.class.getSimpleName(),call);
+    public void addPipeChatListenner(PipeReadAndWriteCall call) {
+        addListenner(PipeReadAndWriteCall.class.getSimpleName(), call);
+    }
+
+    public void addPipeConnectListenner(PipeSocketMonitorCall call) {
+        addListenner(PipeSocketMonitorCall.class.getSimpleName(), call);
     }
 
     /*事件和数据监听*/
-    private void addListenner(String name,Object  clazz) {
+    private void addListenner(String name, Object clazz) {
         listenner.put(name, clazz);
     }
 
-    public Ipipeline build() {
+    public Ipipeline start() {
 
         return pipeline;
     }
 
+    public static ICommand getSender() {
+        return l().start().commander();
+    }
+
+    public static FingerAnSender finger() {
+        return l().start().commander().finger();
+    }
+
+    public static ColorLightAnSender colorLight() {
+        return l().start().commander().colorLight();
+    }
+
+    public static LockAnSender lock() {
+        return l().start().commander().lock();
+    }
+    public static ScanAnSender scanner() {
+        return l().start().commander().scanner();
+    }
 
 }

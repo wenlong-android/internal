@@ -1,7 +1,7 @@
 package com.ebig.socket.dispatchRead.handler;
 
 import com.ebig.log.ELog;
-import com.ebig.socket.common.PipeBus;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.utils.StrUtils;
 import com.ebig.socket.entity.CmdResultInfo;
 import com.ebig.socket.entity.CmdType;
@@ -38,7 +38,7 @@ public class Handler4Lock implements BaseHandler {
 //                }
 //            }
            // dispatchSevice.onHearBeat(System.currentTimeMillis());
-            PipeBus.l().receive(info);
+            AndPipe.l().receive(info);
         }else {
             handler.nextIndex(info);
         }

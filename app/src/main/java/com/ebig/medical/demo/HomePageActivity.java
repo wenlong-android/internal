@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ import com.ebig.http.ApiCall;
 import com.ebig.http.ApushEntity;
 import com.ebig.http.NetResult;
 import com.ebig.idl.Common2Call;
+import com.ebig.idl.CommonCall;
 import com.ebig.log.ELog;
 import com.ebig.medical.demo.fragment.BackLightFragment;
 import com.ebig.medical.demo.fragment.ColorLightFragment;
@@ -36,6 +38,7 @@ import com.ebig.medical.demo.fragment.LockFragment;
 import com.ebig.medical.demo.fragment.ScaleFragment;
 import com.ebig.medical.demo.fragment.ScannerFragment;
 import com.ebig.push.APush;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.socket.entity.CmdRequestInfo;
 import com.ebig.socket.idl.PipeReadAndWriteCall;
 import com.ebig.sp.SpDevice;
@@ -49,7 +52,6 @@ import java.util.TimerTask;
 
 import com.ebig.socket.entity.CmdResultInfo;
 import com.ebig.socket.common.Ipipeline;
-import com.ebig.socket.common.PipeBus;
 import com.ebig.socket.idl.PipeSocketMonitorCall;
 import com.ebig.socket.idl.PipeIdelCall;
 import com.ebig.socket.idl.PipeThCall;
@@ -81,7 +83,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
-        pipeline = PipeBus.l().build();
+        pipeline = AndPipe.l().start();
         SpDevice.save("a00005061-00000001");
         initView();
         initData();
@@ -155,14 +157,20 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
     private void initListenner() {
         client.setOnClickListener(this);
         mServerBtn.setOnClickListener(this);
-        PipeBus.l().addThListnenner(HomePageActivity.this);
-        PipeBus.l().addIdelListenner(HomePageActivity.this);
-        PipeBus.l().addThListnenner(HomePageActivity.this);
-        PipeBus.l().addPipeChatListenner(HomePageActivity.this);
-        PipeBus.l().addPipeConnectListenner(HomePageActivity.this);
+        AndPipe.l().addThListnenner(HomePageActivity.this);
+        AndPipe.l().addIdelListenner(HomePageActivity.this);
+        AndPipe.l().addThListnenner(HomePageActivity.this);
+        AndPipe.l().addPipeChatListenner(HomePageActivity.this);
+        AndPipe.l().addPipeConnectListenner(HomePageActivity.this);
         btnDatabase.setOnClickListener(this);
         findViewById(R.id.btnThOnly).setOnClickListener(this);
-
+        AndPipe.getSender().cardReadr(new CommonCall<String>() {
+            @Override
+            @ThreadMain
+            public void onCommonCall(String result) {
+                Toast.makeText(HomePageActivity.this,result,Toast.LENGTH_LONG).show();
+            }
+        }) ;
     }
 
 

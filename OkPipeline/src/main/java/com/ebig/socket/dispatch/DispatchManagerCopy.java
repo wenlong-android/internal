@@ -5,10 +5,7 @@ import com.ebig.socket.entity.CmdRequestInfo;
 import com.ebig.log.ELog;
 import com.ebig.utils.StrUtils;
 import com.ebig.socket.entity.CmdResultInfo;
-import com.ebig.socket.common.PipeBus;
 import com.ebig.socket.common.PipeWriter;
-import com.ebig.socket.dispatchRead.Chain4Handler;
-import com.ebig.socket.dispatchRead.SoketIoFactory;
 
 public class DispatchManagerCopy extends SocketIoBase {
     private static class L {
@@ -49,7 +46,7 @@ public class DispatchManagerCopy extends SocketIoBase {
 
     @Override
     public void accept(String uuid, String host, String cmd) {
-//        if (!host.equals(PipeBus.l().getHost())) return;
+//        if (!host.equals(AndPipe.l().getHost())) return;
 //        //ELog.print(host+ " 接收到的原始数据:" + cmd);
 //        CmdResultInfo rawInfo = SoketIoFactory.dispatchMatch(uuid, host, cmd);
 //        String order = rawInfo.getOrder();

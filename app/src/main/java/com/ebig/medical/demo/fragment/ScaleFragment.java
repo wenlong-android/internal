@@ -25,7 +25,7 @@ public class ScaleFragment extends BaseFrament{
     @Override
     protected void onCreate() {
         ICommand ICommand = EbWriter.l();
-        ICommand.withScale().upload(true).sendTo(1,0,0);
+        ICommand.scale().upload(true).sendTo(1,0,0);
     }
 
     @Override

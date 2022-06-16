@@ -14,7 +14,7 @@ public class Indicate  {
     }
 
      public void deviceConnect(String uuid, String ipHost) {
-        //if (ipHost.equals(PipeBus.l().getHost())) {
+        //if (ipHost.equals(AndPipe.l().getHost())) {
              clientConnect = true;
        //  }
 
@@ -22,7 +22,7 @@ public class Indicate  {
 
 
     public void deviceDisConnect(String uuid, String ipHost) {
-        //if (ipHost.equals(PipeBus.l().getHost())) {
+        //if (ipHost.equals(AndPipe.l().getHost())) {
             clientConnect = false;
         //}
     }
@@ -37,20 +37,20 @@ public class Indicate  {
 
 
     public void writeOutTime(String uuid, String ipHost,boolean being) {
-       // if (ipHost.equals(PipeBus.l().getHost())) {
+       // if (ipHost.equals(AndPipe.l().getHost())) {
             writeOutTime = being;
       //  }
     }
 
 
     public void readOutTime(String uuid, String ipHost,boolean being) {
-       // if (ipHost.equals(PipeBus.l().getHost())) {
+       // if (ipHost.equals(AndPipe.l().getHost())) {
             readOutime = being;
       //  }
     }
 
      public void outTime(String uuid, String ipHost,boolean being) {
-       // if (ipHost.equals(PipeBus.l().getHost())) {
+       // if (ipHost.equals(AndPipe.l().getHost())) {
             rwOutTime = being;
         //}
     }

@@ -17,7 +17,7 @@ public class LockCmdCompiler {
     public static LockCmdCompiler l(){
         return Lazy.manager;
     }
-    public  LockCmdCompiler withLock(){
+    public  LockCmdCompiler lock(){
         cmdBean=new CmdBean();
         //设置开头
         cmdBean.setStart(CMD.START);

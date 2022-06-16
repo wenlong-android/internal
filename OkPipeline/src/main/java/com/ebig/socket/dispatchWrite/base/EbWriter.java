@@ -2,6 +2,7 @@ package com.ebig.socket.dispatchWrite.base;
 
 import com.ebig.idl.CommonCall;
 import com.ebig.socket.dispatchWrite.backLight.BackLightAnSender;
+import com.ebig.socket.dispatchWrite.cardread.CardReaderSender;
 import com.ebig.socket.dispatchWrite.colorLight.CLightParam;
 import com.ebig.socket.dispatchWrite.colorLight.ColorLightAnSender;
 import com.ebig.socket.dispatchWrite.finger.FingerParam;
@@ -11,9 +12,11 @@ import com.ebig.socket.dispatchWrite.lcd.LcdAnSender;
 import com.ebig.socket.dispatchWrite.lock.LockAnSender;
 import com.ebig.socket.dispatchWrite.scale.ScaleAnSender;
 import com.ebig.socket.dispatchWrite.scander.ScanAnSender;
+import com.ebig.socket.listenner.IFingerRegistListenner;
+
+import java.util.List;
 
 public class EbWriter implements ICommand {
-
     //门锁
     private LockAnSender lockSender;
     //背光灯
@@ -37,23 +40,23 @@ public class EbWriter implements ICommand {
     }
 
     @Override
-    public LockAnSender withLock() {
+    public LockAnSender lock() {
         lockSender=new LockAnSender();
         return lockSender;
     }
 
     @Override
-    public LockAnSender openFrontDoor() {
+    public LockAnSender frontDoor() {
         return lockSender.openFrontDoor();
     }
 
     @Override
-    public LockAnSender openBackDoor() {
+    public LockAnSender backDoor() {
         return lockSender.openBackDoor();
     }
 
     @Override
-    public LockAnSender openBothDoor() {
+    public LockAnSender bothDoor() {
         return lockSender.openBothDoor();
     }
 
@@ -63,7 +66,7 @@ public class EbWriter implements ICommand {
     }
 
     @Override
-    public BackLightAnSender withBackLight() {
+    public BackLightAnSender backLight() {
         backLightSender=new BackLightAnSender();
         return backLightSender;
     }
@@ -79,7 +82,7 @@ public class EbWriter implements ICommand {
     }
 
     @Override
-    public ScanAnSender withScanner() {
+    public ScanAnSender scanner() {
         scanSender=new ScanAnSender();
         return scanSender;
     }
@@ -90,7 +93,7 @@ public class EbWriter implements ICommand {
     }
 
     @Override
-    public ScaleAnSender withScale() {
+    public ScaleAnSender scale() {
         scaleSender=new ScaleAnSender();
         return scaleSender;
     }
@@ -120,7 +123,7 @@ public class EbWriter implements ICommand {
 
 
     @Override
-    public LcdAnSender withLcd() {
+    public LcdAnSender lcd() {
         lcdSender=new LcdAnSender();
         return lcdSender;
     }
@@ -132,35 +135,35 @@ public class EbWriter implements ICommand {
     }
 
     @Override
-    public FingerAnSender withFinger() {
+    public FingerAnSender finger() {
         fingeerSender=new FingerAnSender();
         return fingeerSender;
     }
 
 
     @Override
-    public FingerAnSender regist(FingerParam param) {
-        return fingeerSender.regist(param);
+    public FingerAnSender regist(FingerParam param, IFingerRegistListenner registListenner) {
+        return fingeerSender.regist(param,registListenner);
     }
 
     @Override
-    public FingerAnSender cancle(FingerParam param) {
-        return fingeerSender.cancle(param);
+    public FingerAnSender cancle(FingerParam param,CommonCall<Boolean> call) {
+        return fingeerSender.cancle(param,call);
     }
 
     @Override
-    public FingerAnSender delete(FingerParam param) {
-        return fingeerSender.delete(param);
+    public FingerAnSender delete(FingerParam param,CommonCall<Boolean> call) {
+        return fingeerSender.delete(param,call);
     }
 
     @Override
-    public FingerAnSender deleteAll(FingerParam param) {
-        return fingeerSender.deleteAll(param);
+    public FingerAnSender deleteAll(FingerParam param,CommonCall<Boolean> call) {
+        return fingeerSender.deleteAll(param,call);
     }
 
     @Override
-    public FingerAnSender getFingerId(FingerParam param) {
-        return fingeerSender.getFingerId(param);
+    public FingerAnSender getFingerId(FingerParam param, CommonCall<List<String>> commonCall) {
+        return fingeerSender.getFingerId(param,commonCall);
     }
 
     @Override
@@ -174,7 +177,7 @@ public class EbWriter implements ICommand {
     }
 
     @Override
-    public ColorLightAnSender withCloloLight() {
+    public ColorLightAnSender colorLight() {
         colorLightSender =new ColorLightAnSender();
         return colorLightSender;
     }
@@ -182,5 +185,12 @@ public class EbWriter implements ICommand {
     @Override
     public ColorLightAnSender config(CLightParam param) {
         return colorLightSender.config(param);
+    }
+
+    @Override
+    public CardReaderSender cardReadr(CommonCall<String> call) {
+        CardReaderSender readerSender=new CardReaderSender();
+        readerSender.setCall(call);
+        return readerSender;
     }
 }

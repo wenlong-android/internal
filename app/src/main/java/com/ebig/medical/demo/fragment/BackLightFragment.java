@@ -7,7 +7,7 @@ import com.ebig.http.ApiParamsAll;
 import com.ebig.log.ELog;
 import com.ebig.medical.demo.R;
 import com.ebig.medical.demo.R2;
-import com.ebig.socket.idl.SenderBacklightListenner;
+import com.ebig.socket.common.AndPipe;
 import com.google.gson.Gson;
 
 import butterknife.BindView;
@@ -76,29 +76,9 @@ public class BackLightFragment extends BaseFrament {
         ELog.print("addTask sendTo btn_turnOff...");
         if (viewId == R.id.btn_turnOn) {
             print();
-            jesse.commander().withBackLight().on().addListenner(new SenderBacklightListenner() {
-                @Override
-                public void ok() {
-                   ELog.print("背光灯操作 开：");
-                }
-
-                @Override
-                public void onFail(String msg) {
-
-                }
-            }).sendTo(1, 0, 0);
+            AndPipe.getSender().backLight().on().sendTo(1, 0, 0);
         } else if (viewId == R.id.btn_turnOff) {
-            jesse.commander().withBackLight().off().addListenner(new SenderBacklightListenner() {
-                @Override
-                public void ok() {
-                   ELog.print("背光灯操作 关：");
-                }
-
-                @Override
-                public void onFail(String msg) {
-
-                }
-            }).sendTo(1, 0, 0);
+            AndPipe.getSender(). backLight().off().sendTo(1, 0, 0);
         }
 
     }

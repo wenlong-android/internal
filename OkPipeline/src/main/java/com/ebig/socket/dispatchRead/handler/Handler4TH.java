@@ -1,14 +1,11 @@
 package com.ebig.socket.dispatchRead.handler;
 
-import com.ebig.socket.bean.TeHuEntity;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.temperature_humidity.ThCacheFactory;
-import com.ebig.temperature_humidity.ThClient;
 import com.ebig.utils.DoubleUtils;
 import com.ebig.utils.HexUtils;
 import com.ebig.socket.entity.CmdResultInfo;
-import com.ebig.socket.common.PipeBus;
 import com.ebig.socket.entity.CmdType;
-import com.google.gson.Gson;
 
 /*温湿度*/
 public class Handler4TH implements BaseHandler {
@@ -30,7 +27,7 @@ public class Handler4TH implements BaseHandler {
             double temperatureInt = (HexUtils.hex2int(fianlT) * 175.72) / 65536.0 - 46.85;
             double humidityInt = (HexUtils.hex2int(fianlH) * 125.0) / 65536.0 - 6;
             long internal = System.currentTimeMillis() - TimeInternal.thStart;
-            PipeBus.l().onThCall(temperatureInt, humidityInt, internal);
+            AndPipe.l().onThCall(temperatureInt, humidityInt, internal);
             TimeInternal.thStart = System.currentTimeMillis();
             double t = DoubleUtils.with2(temperatureInt);
             double h = DoubleUtils.with2(humidityInt);

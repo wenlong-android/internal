@@ -9,8 +9,7 @@ import com.ebig.idl.CommonCall;
 import com.ebig.log.ELog;
 import com.ebig.medical.demo.R;
 import com.ebig.medical.demo.R2;
-import com.ebig.socket.idl.ScannerListenner;
-import com.ebig.socket.listenner.Listenner4Scanner;
+import com.ebig.socket.common.AndPipe;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -77,7 +76,7 @@ public class ScannerFragment extends BaseFrament {
 
     @OnClick(R2.id.btn_start)
     public void onClick() {
-        jesse.commander().withScanner().scan(new CommonCall<String>() {
+        AndPipe.scanner().scan(new CommonCall<String>() {
             @Override
             public void onCommonCall(String result) {
                 ELog.print("onCommonCall:"+result);

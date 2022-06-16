@@ -44,23 +44,22 @@ public class RemoteFixUtils {
     }
 
 
-    private static void common(@RemoteIndex int index,String uuid, String host, String cmd, RemoteCallbackList<IResultListenner> r) {
+    private static  void common(@RemoteIndex int index,String uuid, String host, String cmd, RemoteCallbackList<IResultListenner> r) {
         try {
-            final RomoteCmd remote=new RomoteCmd(uuid,host,cmd);
             mLock.lock();
+            final RomoteCmd remote=new RomoteCmd(uuid,host,cmd);
             int n = r.beginBroadcast();
             for (int i = 0; i < n; i++) {
                String packName= r.getBroadcastItem(i).asBinder().getClass().getPackage().getName();
                if (packName.equals("android.os")){
                    r.getBroadcastItem(i).onResult(index,  new Gson().toJson(remote));
-               }
-
-
+                }
             }
-            r.finishBroadcast();
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }finally {
+            r.finishBroadcast();
             mLock.unlock();
         }
     }

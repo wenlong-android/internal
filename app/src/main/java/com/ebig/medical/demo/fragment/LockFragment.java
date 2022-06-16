@@ -3,10 +3,9 @@ package com.ebig.medical.demo.fragment;
 import android.view.View;
 import android.widget.Button;
 
-import com.ebig.log.ELog;
 import com.ebig.medical.demo.R;
 import com.ebig.medical.demo.R2;
-import com.ebig.socket.idl.SenderLockListenner;
+import com.ebig.socket.common.AndPipe;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -75,74 +74,80 @@ public class LockFragment extends BaseFrament {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_openMainDoor:
-                jesse.commander().withLock().openFrontDoor().addListenner(new SenderLockListenner() {
-                    @Override
-                    public void lockCall() {
-                        showMsg("门锁自动打开或关闭");
-                    }
-
-                    @Override
-                    public void doorOpen() {
-                        showMsg("门手动打开");
-                    }
-
-                    @Override
-                    public void doorClose() {
-                        showMsg("门手动关闭");
-                    }
-
-                    @Override
-                    public void onFail(String msg) {
-
-                    }
-
-        }).sendTo(255,255,255);
+                AndPipe.lock().openFrontDoor()
+//                        .addListenner(new SenderLockListenner() {
+//                    @Override
+//                    public void lockCall() {
+//                        showMsg("门锁自动打开或关闭");
+//                    }
+//
+//                    @Override
+//                    public void doorOpen() {
+//                        showMsg("门手动打开");
+//                    }
+//
+//                    @Override
+//                    public void doorClose() {
+//                        showMsg("门手动关闭");
+//                    }
+//
+//                    @Override
+//                    public void onFail(String msg) {
+//
+//                    }
+//
+//        })
+                        .sendTo(255,255,255);
                 break;
             case R.id.btn_openFrontDoor:
-                jesse.commander().withLock().openBackDoor().addListenner(new SenderLockListenner() {
-                    @Override
-                    public void lockCall() {
-
-                    }
-
-                    @Override
-                    public void doorOpen() {
-
-                    }
-
-                    @Override
-                    public void doorClose() {
-                        showMsg("门手动关闭");
-                    }
-
-                    @Override
-                    public void onFail(String msg) {
-
-                    }
-                }).sendTo(255,255,255);
+                AndPipe.lock().openBackDoor()
+//                        .addListenner(new SenderLockListenner() {
+//                    @Override
+//                    public void lockCall() {
+//
+//                    }
+//
+//                    @Override
+//                    public void doorOpen() {
+//
+//                    }
+//
+//                    @Override
+//                    public void doorClose() {
+//                        showMsg("门手动关闭");
+//                    }
+//
+//                    @Override
+//                    public void onFail(String msg) {
+//
+//                    }
+//                })
+                        .sendTo(255,255,255);
                 break;
             case R.id.btn_openbackDoor:
-                jesse.commander().withLock().openBothDoor().addListenner(new SenderLockListenner() {
-                    @Override
-                    public void lockCall() {
-                       ELog.print("lockCall");
-                    }
-
-                    @Override
-                    public void doorOpen() {
-                       ELog.print("doorOpen");
-                    }
-
-                    @Override
-                    public void doorClose() {
-                       ELog.print("doorClose");
-                    }
-
-                    @Override
-                    public void onFail(String msg) {
-                       ELog.print("onFail:"+msg);
-                    }
-                }).sendTo(255,255,255);
+                AndPipe.lock().openBothDoor()
+//                        .addListenner(new SenderLockListenner() {
+//                    @Override
+//                    public void lockCall() {
+//                       ELog.print("lockCall");
+//                    }
+//
+//                    @Override
+//                    public void doorOpen() {
+//                       ELog.print("doorOpen");
+//                    }
+//
+//                    @Override
+//                    public void doorClose() {
+//                       ELog.print("doorClose");
+//                    }
+//
+//                    @Override
+//                    public void onFail(String msg) {
+//                       ELog.print("onFail:"+msg);
+//                    }
+//                })
+                        .sendTo(255,255,255);
                 break;
         }
     }

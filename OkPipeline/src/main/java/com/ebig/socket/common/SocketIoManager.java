@@ -24,7 +24,7 @@ public class SocketIoManager extends SocketIoBase {
      */
     @Override
     public void addFormatCmd2TaskPipeline(CmdRequestInfo task) {
-        PipeBus.l().send(task);
+        AndPipe.l().send(task);
         CmdServiceManager.l().sendCmd(new Gson().toJson(task));
     }
 

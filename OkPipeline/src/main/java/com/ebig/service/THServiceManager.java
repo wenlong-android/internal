@@ -8,14 +8,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 
 import com.ebig.log.ELog;
-import com.ebig.socket.common.PipeBus;
-import com.ebig.socket.common.SocketIoManager;
-import com.ebig.socket.entity.RemoteIndex;
-import com.ebig.socket.entity.RomoteCmd;
 import com.ebig.temperature_humidity.ThService;
 import com.ebig.utils.AppGlobals;
-import com.google.gson.Gson;
-import com.minjie.libcmd.IResultListenner;
 import com.minjie.libcmd.ITHServiceCall;
 import com.minjie.libcmd.IthListenner;
 

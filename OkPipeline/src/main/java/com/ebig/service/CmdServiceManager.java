@@ -3,23 +3,16 @@ package com.ebig.service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.util.Log;
-
-import androidx.annotation.IntDef;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 
 import com.ebig.log.ELog;
-import com.ebig.socket.common.PipeBus;
+import com.ebig.socket.common.AndPipe;
 import com.ebig.socket.common.SocketIoManager;
 import com.ebig.socket.entity.RemoteIndex;
 import com.ebig.socket.entity.RomoteCmd;
 import com.ebig.utils.AppGlobals;
 import com.google.gson.Gson;
-import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.minjie.libcmd.ICmdServiceCall;
 import com.minjie.libcmd.IResultListenner;
 
@@ -65,15 +58,15 @@ public class CmdServiceManager implements ICmdService {
                     if (index == RemoteIndex.messageRead) {
                         RomoteCmd info = new Gson().fromJson(json, RomoteCmd.class);
                         SocketIoManager.load().accept(info.getUuid(), info.getHost(), info.getCmd());
-                        PipeBus.l().deviceConnect(info.getUuid(), info.getHost());
+                        AndPipe.l().deviceConnect(info.getUuid(), info.getHost());
                     } else if (index == RemoteIndex.rabbitMsg) {
 
                     } else if (index == RemoteIndex.deviceConnect) {
                         RomoteCmd info = new Gson().fromJson(json, RomoteCmd.class);
-                        PipeBus.l().deviceConnect(info.getUuid(), info.getHost());
+                        AndPipe.l().deviceConnect(info.getUuid(), info.getHost());
                     } else if (index == RemoteIndex.deviceDisConnect) {
                         RomoteCmd info = new Gson().fromJson(json, RomoteCmd.class);
-                        PipeBus.l().deviceDisConnect(info.getUuid(), info.getHost());
+                        AndPipe.l().deviceDisConnect(info.getUuid(), info.getHost());
                     }
                 }
             });
