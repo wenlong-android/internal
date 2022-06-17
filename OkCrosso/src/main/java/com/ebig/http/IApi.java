@@ -57,5 +57,6 @@ public interface IApi {
     //推送自动调用
     ApiRequest push(ApiBaseParams params,String name,String deviceId);
 
+    ApiPostFile postFile(String path);
 
 }

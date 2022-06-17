@@ -309,4 +309,16 @@ public class Api extends ApiHelper implements IApi {
         ApiRequest request=new ApiRequest(url, GsonUtils.toJson(params));
         return request;
     }
+
+    /***
+     * 上传文件
+     * @param path
+     * @return
+     */
+    @Override
+    public ApiPostFile postFile(String path) {
+        String url=host+"upms/file/upload";
+        ApiPostFile request=new ApiPostFile(url,path);
+        return request;
+    }
 }

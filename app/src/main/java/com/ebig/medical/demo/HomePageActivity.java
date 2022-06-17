@@ -3,11 +3,18 @@ package com.ebig.medical.demo;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.ebig.annotation.Permission;
 import com.ebig.annotation.ThreadIo;
 import com.ebig.annotation.ThreadMain;
 import com.ebig.crosso.manager.Crosso;
@@ -28,7 +36,9 @@ import com.ebig.http.ApiCall;
 import com.ebig.http.ApushEntity;
 import com.ebig.http.NetResult;
 import com.ebig.idl.Common2Call;
+import com.ebig.idl.Common3Call;
 import com.ebig.idl.CommonCall;
+import com.ebig.idl.CommonCall3;
 import com.ebig.log.ELog;
 import com.ebig.medical.demo.fragment.BackLightFragment;
 import com.ebig.medical.demo.fragment.ColorLightFragment;
@@ -75,7 +85,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
     private ViewPager viewPager;
     private TextView btn_heartbeat, btn_th;
     private Ipipeline pipeline;
-
+    private ImageView img;
     private Button btnDatabase;
     private String factoryCode = "a00005061-00000001";
 
@@ -91,6 +101,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    @Permission(PermissionConsts.STORAGE)
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.client) {
@@ -118,29 +129,31 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
 //
 //                }
 //            });
-            JSONArray array=new JSONArray();
-            array.put("api");
-            Api.deFault().getDeviceSettings(array).request(new ApiCall<NetResult>() {
-                @Override
-                public void onResult(NetResult netResult) {
-                    ELog.print("saveDeviceSettings:"+ GsonUtils.toJson(netResult));
-                }
-
-                @Override
-                public void onFail(int code, String error) {
-                    ELog.print("saveDeviceSettings onFail :"+ error );
-
-                }
-            });
+//            JSONArray array = new JSONArray();
+//            array.put("api");
+//            Api.deFault().getDeviceSettings(array).request(new ApiCall<NetResult>() {
+//                @Override
+//                public void onResult(NetResult netResult) {
+//                    ELog.print("saveDeviceSettings:" + GsonUtils.toJson(netResult));
+//                }
+//
+//                @Override
+//                public void onFail(int code, String error) {
+//                    ELog.print("saveDeviceSettings onFail :" + error);
+//
+//                }
+//            });
+           // InputPicture();
+            print();
         }
-        print();
+
     }
 
     @ThreadIo
     private void print() {
         List<ThDbEntity> list = ThDataImpl.getWith12hourData();
         for (int i = 0; i < list.size(); i++) {
-            ELog.print(list.get(i).toString());
+            ELog.print("温湿度记录：" + list.get(i).toString());
         }
     }
 
@@ -168,9 +181,17 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
             @Override
             @ThreadMain
             public void onCommonCall(String result) {
-                Toast.makeText(HomePageActivity.this,result,Toast.LENGTH_LONG).show();
+                Toast.makeText(HomePageActivity.this, result, Toast.LENGTH_LONG).show();
             }
-        }) ;
+        });
+
+        AndPipe.getSender().onThRecive(new CommonCall3<Double, Double, Long>() {
+            @Override
+            @ThreadMain
+            public void onCommonCall(Double temperature, Double humidity, Long internal) {
+                Toast.makeText(HomePageActivity.this, "温度："+temperature+ " ,湿度："+humidity+" ,间隔时间："+internal, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 
@@ -192,7 +213,6 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
 //        user.setExt3("null");
 //        ELog.print(new Gson().toJson(user));;
 
-
     }
 
     @Override
@@ -205,6 +225,53 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
+    }
+
+    private void InputPicture() {
+        //Intent.ACTION_PICK 从数据中选择一个项目 (item)，将被选中的项目返回。
+        //MediaStore.Images.Media.EXTERNAL_CONTENT_URI 获取外部的URI
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        //参数一:对应的数据的URI 参数二:使用该函数表示要查找文件的MIME类型
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            ELog.print("onActivityResult: " + picturePath);
+            uploadPic(picturePath);
+            display(picturePath);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
+@ThreadMain
+    private void display(String picturePath) {
+    Bitmap bitmap= BitmapFactory.decodeFile(picturePath);
+    img.setImageBitmap(bitmap);
+    }
+
+    @ThreadIo
+    private void uploadPic(String picturePath) {
+        Api.deFault().postFile(picturePath).request(new ApiCall<NetResult>() {
+            @Override
+            public void onResult(NetResult netResult) {
+                ELog.print("uploadPic onResult:"+GsonUtils.toJson(netResult));
+            }
+
+            @Override
+            public void onFail(int code, String error) {
+                ELog.print("uploadPic onFail code:"+code+" ,error:"+error);
+
+            }
+        });
     }
 
     @Override
@@ -261,6 +328,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void initView() {
+        img=findViewById(R.id.img);
         status = findViewById(R.id.status);
         tv_receive = findViewById(R.id.tv_receive);
         mServerBtn = findViewById(R.id.launch);

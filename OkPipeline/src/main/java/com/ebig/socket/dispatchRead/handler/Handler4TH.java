@@ -1,6 +1,7 @@
 package com.ebig.socket.dispatchRead.handler;
 
 import com.ebig.socket.common.AndPipe;
+import com.ebig.socket.listenner.Listenner4Th;
 import com.ebig.temperature_humidity.ThCacheFactory;
 import com.ebig.utils.DoubleUtils;
 import com.ebig.utils.HexUtils;
@@ -37,8 +38,8 @@ public class Handler4TH implements BaseHandler {
 //            list.add(beanT);
 //            list.add(beanH);
 //            ThEntity entity = new ThEntity(1,info.getUuid(),list);
-
-            ThCacheFactory.onOrder(info.getHost(),info.getUuid(),t,h);
+            Listenner4Th.onThRecive(t, h, internal);
+            ThCacheFactory.onOrder(info.getHost(), info.getUuid(), t, h);
 
         } else {
             handler.nextIndex(info);

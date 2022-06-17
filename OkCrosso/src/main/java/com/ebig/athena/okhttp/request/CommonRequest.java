@@ -3,6 +3,7 @@ package com.ebig.athena.okhttp.request;
 import android.util.Log;
 
 import com.ebig.athena.okhttp.LogUtils;
+import com.ebig.log.ELog;
 
 import java.io.File;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class CommonRequest {
      * @return
      */
     public static Request createPostRequest(String url, String params, RequestParams headers) {
-         //添加请求头
+        //添加请求头
         Headers.Builder mHeaderBuild = new Headers.Builder();
         if (headers != null) {
             for (Map.Entry<String, String> entry : headers.urlParams.entrySet()) {
@@ -99,26 +100,39 @@ public class CommonRequest {
      *
      * @return
      */
-    private static final MediaType FILE_TYPE = MediaType.parse("application/octet-stream");
+   // private static final MediaType FILE_TYPE = MediaType.parse("application/octet-stream");
+    private static final MediaType FILE_TYPE = MediaType.parse("text/plain");
 
     public static Request createMultiPostRequest(String url, RequestParams params) {
         MultipartBody.Builder requestBody = new MultipartBody.Builder();
         requestBody.setType(MultipartBody.FORM);
+        //添加请求头
+        Headers.Builder mHeaderBuild = new Headers.Builder();
+        mHeaderBuild.add("TENANT-ID", 1+"");
+
         if (params != null) {
             for (Map.Entry<String, Object> entry : params.fileParams.entrySet()) {
                 if (entry.getValue() instanceof File) {
-                    requestBody.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + entry.getKey() + "\""),
-                            RequestBody.create(FILE_TYPE, (File) entry.getValue()));
+//                    requestBody.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + entry.getKey() + "\""),
+//                            RequestBody.create(FILE_TYPE, (File) entry.getValue()));
+                    requestBody.addFormDataPart(
+                            entry.getKey(),
+                            ((File) entry.getValue()).getAbsolutePath(),
+                            RequestBody.create(MediaType.parse("application/octet-stream"),(File) ((File) entry.getValue()).getAbsoluteFile())
+                    );
+                    ELog.print("ApiRequest name:"+entry.getKey()+ "   ,path:"+( (File) entry.getValue()).getAbsolutePath());
+
                 } else if (entry.getValue() instanceof String) {
                     requestBody.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + entry.getKey() + "\""),
                             RequestBody.create(null, (String) entry.getValue()));
+                    ELog.print("ApiRequest path:"+entry.getValue());
                 }
             }
         }
 
         Request request = null;
         try {
-            request = new Request.Builder().url(url).post(requestBody.build()).build();
+            request = new Request.Builder().url(url).post(requestBody.build()).headers(mHeaderBuild.build()).build();
         } catch (Exception e) {
 
         }

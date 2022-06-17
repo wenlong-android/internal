@@ -27,7 +27,7 @@ public interface ThDao {
     @Query("select * from ThDbEntity  where commitState =:event order by id DESC")
     List<ThDbEntity> onState(int event);
 
-    @Query("select * from ThDbEntity  where id >=:time order by id DESC")
+    @Query("select * from ThDbEntity  where id >=:time order by id ASC")
     List<ThDbEntity> get12hours(long  time);
 
     @Delete

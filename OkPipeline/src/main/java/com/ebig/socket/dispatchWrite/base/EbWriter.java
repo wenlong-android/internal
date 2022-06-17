@@ -1,6 +1,8 @@
 package com.ebig.socket.dispatchWrite.base;
 
+import com.ebig.idl.Common3Call;
 import com.ebig.idl.CommonCall;
+import com.ebig.idl.CommonCall3;
 import com.ebig.socket.dispatchWrite.backLight.BackLightAnSender;
 import com.ebig.socket.dispatchWrite.cardread.CardReaderSender;
 import com.ebig.socket.dispatchWrite.colorLight.CLightParam;
@@ -12,11 +14,12 @@ import com.ebig.socket.dispatchWrite.lcd.LcdAnSender;
 import com.ebig.socket.dispatchWrite.lock.LockAnSender;
 import com.ebig.socket.dispatchWrite.scale.ScaleAnSender;
 import com.ebig.socket.dispatchWrite.scander.ScanAnSender;
+import com.ebig.socket.dispatchWrite.th.ThReceiver;
 import com.ebig.socket.listenner.IFingerRegistListenner;
 
 import java.util.List;
 
-public class EbWriter implements ICommand {
+public  class EbWriter implements ICommand {
     //门锁
     private LockAnSender lockSender;
     //背光灯
@@ -192,5 +195,12 @@ public class EbWriter implements ICommand {
         CardReaderSender readerSender=new CardReaderSender();
         readerSender.setCall(call);
         return readerSender;
+    }
+
+    @Override
+    public ThReceiver onThRecive(CommonCall3<Double, Double, Long> call) {
+        ThReceiver receiver=new ThReceiver();
+        receiver.addReciveCall(call);
+        return receiver;
     }
 }

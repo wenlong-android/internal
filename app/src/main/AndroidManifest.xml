@@ -32,4 +32,6 @@
             android:theme="@style/Theme.Ebig"/>
     </application>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 </manifest>
