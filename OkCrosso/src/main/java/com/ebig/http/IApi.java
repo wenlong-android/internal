@@ -7,7 +7,7 @@ public interface IApi {
     /**
      * 服务接口
      */
-    ApiRequest registerDevice(String factoryCode,String tenantId,String machineName);
+    ApiRequest registerDevice(boolean mainCargo,String factoryCode,String tenantId,String machineName);
     ApiRequest saveDeviceSettings(String key,String value);
     ApiRequest getDeviceSettings(JSONArray arrJson);
     ApiRequest deleteDeviceSettings(JSONArray arrJson);

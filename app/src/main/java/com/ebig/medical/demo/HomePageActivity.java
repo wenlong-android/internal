@@ -143,8 +143,8 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
 //
 //                }
 //            });
-           // InputPicture();
-            print();
+            InputPicture();
+            //print();
         }
 
     }
@@ -185,13 +185,13 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        AndPipe.getSender().onThRecive(new CommonCall3<Double, Double, Long>() {
-            @Override
-            @ThreadMain
-            public void onCommonCall(Double temperature, Double humidity, Long internal) {
-                Toast.makeText(HomePageActivity.this, "温度："+temperature+ " ,湿度："+humidity+" ,间隔时间："+internal, Toast.LENGTH_LONG).show();
-            }
-        });
+//        AndPipe.getSender().onThRecive(new CommonCall3<Double, Double, Long>() {
+//            @Override
+//            @ThreadMain
+//            public void onCommonCall(Double temperature, Double humidity, Long internal) {
+//                Toast.makeText(HomePageActivity.this, "温度："+temperature+ " ,湿度："+humidity+" ,间隔时间："+internal, Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 
 

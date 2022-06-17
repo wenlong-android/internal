@@ -5,6 +5,7 @@ import com.ebig.http.APushRaw;
 import com.ebig.http.ApushEntity;
 import com.ebig.idl.Common2Call;
 import com.ebig.log.ELog;
+import com.ebig.sp.SpDevice;
 import com.ebig.utils.StrUtils;
 import com.google.gson.Gson;
 import com.rabbitmq.client.AMQP;
@@ -52,6 +53,16 @@ public class MqManager {
             Connection connection = factory.newConnection();
             //通道
             final Channel channel = connection.createChannel();
+            final String rountingKey= SpDevice.getCode();
+            /** exchangeName   DeviceSyncDataChangedEvent
+             *  queueName 随意，确认唯一的柜子信息
+             *  rountingKey all
+             *  rountingKey 主柜设备序列码
+             *  main
+             */
+            channel.queueDeclare(rountingKey,true,false,false,new HashMap<>());
+            channel.queueBind(rountingKey , "DeviceSyncDataChangedEvent" , "all") ;
+            channel.queueBind(rountingKey , "DeviceSyncDataChangedEvent" , rountingKey) ;
             //实现Consumer的最简单方法是将便捷类DefaultConsumer子类化。可以在basicConsume 调用上传递此子类的对象以设置订阅：
             channel.basicConsume(aPush.method, false, new DefaultConsumer(channel) {
                 @Override

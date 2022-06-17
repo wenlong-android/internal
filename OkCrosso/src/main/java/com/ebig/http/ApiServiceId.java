@@ -48,9 +48,10 @@ public class ApiServiceId {
     //单品码
     public final static String deviceBaseUniqueCode = "deviceBaseUniqueCode";
     //业务信息接口
-    public final static String deviceBizInBoundOrder = "deviceBizInBoundOrder";
+    //入库单
+    public final static String deviceBizInBoundOrder = "deviceBizStoreCommand";
     //出库单
-    public final static String deviceBizOutBoundOrder = "deviceBizOutBoundOrder";
+    public final static String deviceBizOutBoundOrder = "deviceBizOutCommand";
     //xxxxx
     //public final static String xxxxx = "xxxxx";
 

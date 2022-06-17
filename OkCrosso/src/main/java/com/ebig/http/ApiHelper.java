@@ -20,11 +20,13 @@ public class ApiHelper {
         return jsonObject.toString();
     }
 
-    public static JSONObject makeRegisterDeviceJsons(String factoryCode, String tenantId, String machineName) {
+    public static JSONObject makeRegisterDeviceJsons(boolean main,String factoryCode, String tenantId, String machineName) {
         JSONObject jsonObject = null;
         jsonObject = JsonUtils.put(jsonObject, "factoryCode", factoryCode);
         jsonObject = JsonUtils.put(jsonObject, "tenantId", tenantId);
         jsonObject = JsonUtils.put(jsonObject, "machineName", machineName);
+        jsonObject = JsonUtils.put(jsonObject, "main", main);
+
         return jsonObject;
     }
 
