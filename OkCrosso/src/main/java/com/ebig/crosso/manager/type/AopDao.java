@@ -51,4 +51,6 @@ public interface AopDao {
 
     @Delete
    void delete(List<AopDbInfo> list);
+
+
 }

@@ -5,7 +5,10 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import com.ebig.annotation.Permission;
 import com.ebig.annotation.ThreadMain;
+import com.ebig.crosso.bean.aop.AopCrashEntity;
 import com.ebig.crosso.utils.CrossoPermission;
+import com.ebig.crosso.utils.CrossoStackUtils;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -40,7 +43,7 @@ public class PermissionAspectJ {
                            // ELog.print("已经成功获取权限：继续执行");
                         } catch (Throwable e) {
                             e.printStackTrace();
-
+                            CrossoDataAPI.getInstance().crash(Thread.currentThread().getName(),new AopCrashEntity(CrossoStackUtils.getInfo(e)));
                         }
                     }
 

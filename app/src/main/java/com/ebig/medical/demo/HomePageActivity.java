@@ -27,9 +27,13 @@ import androidx.viewpager.widget.ViewPager;
 import com.ebig.annotation.Permission;
 import com.ebig.annotation.ThreadIo;
 import com.ebig.annotation.ThreadMain;
+import com.ebig.crosso.excel.CreateExcelManager;
 import com.ebig.crosso.manager.Crosso;
+import com.ebig.crosso.manager.db.CrossoDb;
 import com.ebig.crosso.manager.db.upload.ThDbEntity;
 import com.ebig.crosso.manager.db.upload.ThDataImpl;
+import com.ebig.crosso.manager.type.AopDbInfo;
+import com.ebig.crosso.manager.type.AopInfoUtils;
 import com.ebig.crosso.utils.PermissionConsts;
 import com.ebig.http.Api;
 import com.ebig.http.ApiCall;
@@ -38,6 +42,7 @@ import com.ebig.http.NetResult;
 import com.ebig.idl.Common2Call;
 import com.ebig.idl.Common3Call;
 import com.ebig.idl.CommonCall;
+import com.ebig.idl.CommonCall2;
 import com.ebig.idl.CommonCall3;
 import com.ebig.log.ELog;
 import com.ebig.medical.demo.fragment.BackLightFragment;
@@ -52,6 +57,7 @@ import com.ebig.socket.common.AndPipe;
 import com.ebig.socket.entity.CmdRequestInfo;
 import com.ebig.socket.idl.PipeReadAndWriteCall;
 import com.ebig.sp.SpDevice;
+import com.ebig.utils.AppGlobals;
 import com.ebig.utils.GsonUtils;
 import com.google.android.material.tabs.TabLayout;
 
@@ -101,7 +107,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    @Permission(PermissionConsts.STORAGE)
+   // @Permission(PermissionConsts.STORAGE)
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.client) {
@@ -143,10 +149,23 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
 //
 //                }
 //            });
-            InputPicture();
+            // InputPicture();
             //print();
+             createExcl();
+
         }
 
+    }
+
+    @ThreadIo
+    private void createExcl() {
+        List<AopDbInfo> list= AopInfoUtils.getAll();
+        CreateExcelManager.load().writeNewExl(list, new CommonCall2<Boolean, String>() {
+            @Override
+            public void onCommonCall(Boolean aBoolean, String s) {
+                ELog.print("createExcl finish:"+aBoolean+" ,msg:"+s);
+            }
+        });
     }
 
     @ThreadIo
@@ -252,10 +271,11 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
         super.onActivityResult(requestCode, resultCode, data);
 
     }
-@ThreadMain
+
+    @ThreadMain
     private void display(String picturePath) {
-    Bitmap bitmap= BitmapFactory.decodeFile(picturePath);
-    img.setImageBitmap(bitmap);
+        Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+        img.setImageBitmap(bitmap);
     }
 
     @ThreadIo
@@ -263,12 +283,12 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
         Api.deFault().postFile(picturePath).request(new ApiCall<NetResult>() {
             @Override
             public void onResult(NetResult netResult) {
-                ELog.print("uploadPic onResult:"+GsonUtils.toJson(netResult));
+                ELog.print("uploadPic onResult:" + GsonUtils.toJson(netResult));
             }
 
             @Override
             public void onFail(int code, String error) {
-                ELog.print("uploadPic onFail code:"+code+" ,error:"+error);
+                ELog.print("uploadPic onFail code:" + code + " ,error:" + error);
 
             }
         });
@@ -328,7 +348,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void initView() {
-        img=findViewById(R.id.img);
+        img = findViewById(R.id.img);
         status = findViewById(R.id.status);
         tv_receive = findViewById(R.id.tv_receive);
         mServerBtn = findViewById(R.id.launch);
