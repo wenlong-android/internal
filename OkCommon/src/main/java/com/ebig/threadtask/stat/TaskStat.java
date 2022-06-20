@@ -1,6 +1,6 @@
-package com.ebig.launchstarter.stat;
+package com.ebig.threadtask.stat;
 
-import com.ebig.launchstarter.utils.DispatcherLog;
+import com.ebig.threadtask.utils.DispatcherLog;
 
 import java.util.ArrayList;
 import java.util.List;

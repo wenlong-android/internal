@@ -1,4 +1,4 @@
-package com.ebig.launchstarter.utils;
+package com.ebig.threadtask.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;

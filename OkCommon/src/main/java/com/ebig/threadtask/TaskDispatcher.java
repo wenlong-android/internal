@@ -1,4 +1,4 @@
-package com.ebig.launchstarter;
+package com.ebig.threadtask;
 
 import android.content.Context;
 import android.os.Looper;
@@ -6,13 +6,13 @@ import android.util.Log;
 
 import androidx.annotation.UiThread;
 
-import com.ebig.launchstarter.sort.TaskSortUtil;
-import com.ebig.launchstarter.stat.TaskStat;
-import com.ebig.launchstarter.task.DispatchRunnable;
-import com.ebig.launchstarter.task.Task;
-import com.ebig.launchstarter.task.TaskCallBack;
-import com.ebig.launchstarter.utils.DispatcherLog;
-import com.ebig.launchstarter.utils.Utils;
+import com.ebig.threadtask.sort.TaskSortUtil;
+import com.ebig.threadtask.stat.TaskStat;
+import com.ebig.threadtask.task.DispatchRunnable;
+import com.ebig.threadtask.task.Task;
+import com.ebig.threadtask.task.TaskCallBack;
+import com.ebig.threadtask.utils.DispatcherLog;
+import com.ebig.threadtask.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;

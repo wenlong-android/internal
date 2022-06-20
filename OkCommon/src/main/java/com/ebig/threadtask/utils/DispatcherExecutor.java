@@ -1,4 +1,4 @@
-package com.ebig.launchstarter.utils;
+package com.ebig.threadtask.utils;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;

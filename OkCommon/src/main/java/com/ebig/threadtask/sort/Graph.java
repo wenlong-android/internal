@@ -1,4 +1,4 @@
-package com.ebig.launchstarter.sort;
+package com.ebig.threadtask.sort;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

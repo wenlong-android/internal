@@ -1,13 +1,13 @@
-package com.ebig.launchstarter.task;
+package com.ebig.threadtask.task;
 
 import android.os.Looper;
 import android.os.Process;
 
 import androidx.core.os.TraceCompat;
 
-import com.ebig.launchstarter.TaskDispatcher;
-import com.ebig.launchstarter.stat.TaskStat;
-import com.ebig.launchstarter.utils.DispatcherLog;
+import com.ebig.threadtask.TaskDispatcher;
+import com.ebig.threadtask.stat.TaskStat;
+import com.ebig.threadtask.utils.DispatcherLog;
 
 /**
  * 任务真正执行的地方
@@ -43,7 +43,7 @@ public class DispatchRunnable implements Runnable {
 
         // 执行Task
         mTask.setRunning(true);
-        mTask.run();
+        mTask.execute();
 
         // 执行Task的尾部任务
         Runnable tailRunnable = mTask.getTailRunnable();

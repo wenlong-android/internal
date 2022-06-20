@@ -1,12 +1,12 @@
-package com.ebig.launchstarter.sort;
+package com.ebig.threadtask.sort;
 
 
 
 import androidx.annotation.NonNull;
 import androidx.collection.ArraySet;
 
-import com.ebig.launchstarter.task.Task;
-import com.ebig.launchstarter.utils.DispatcherLog;
+import com.ebig.threadtask.task.Task;
+import com.ebig.threadtask.utils.DispatcherLog;
 
 import java.util.ArrayList;
 import java.util.List;

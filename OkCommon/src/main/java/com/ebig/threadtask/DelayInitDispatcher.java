@@ -1,10 +1,10 @@
-package com.ebig.launchstarter;
+package com.ebig.threadtask;
 
 import android.os.Looper;
 import android.os.MessageQueue;
 
-import com.ebig.launchstarter.task.DispatchRunnable;
-import com.ebig.launchstarter.task.Task;
+import com.ebig.threadtask.task.DispatchRunnable;
+import com.ebig.threadtask.task.Task;
 
 import java.util.LinkedList;
 import java.util.Queue;

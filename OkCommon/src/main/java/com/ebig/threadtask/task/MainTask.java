@@ -1,4 +1,4 @@
-package com.ebig.launchstarter.task;
+package com.ebig.threadtask.task;
 
 public abstract class MainTask extends Task {
 

@@ -1,10 +1,10 @@
-package com.ebig.launchstarter.task;
+package com.ebig.threadtask.task;
 
 import android.content.Context;
 import android.os.Process;
 
-import com.ebig.launchstarter.TaskDispatcher;
-import com.ebig.launchstarter.utils.DispatcherExecutor;
+import com.ebig.threadtask.TaskDispatcher;
+import com.ebig.threadtask.utils.DispatcherExecutor;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;

@@ -1,4 +1,4 @@
-package com.ebig.launchstarter.task;
+package com.ebig.threadtask.task;
 
 import android.os.Process;
 
@@ -17,7 +17,7 @@ public interface ITask {
     @IntRange(from = Process.THREAD_PRIORITY_FOREGROUND, to = Process.THREAD_PRIORITY_LOWEST)
     int priority();
 
-    void run();
+    void execute();
 
     /**
      * Task执行所在的线程池，可指定，一般默认
