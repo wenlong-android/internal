@@ -23,35 +23,35 @@ public class SpApi {
         return BaseSp.l().getBool(dept);
     }
 
-    public static void saveUser(String user, boolean enable) {
+    public static void saveUser(boolean enable) {
         BaseSp.l().putBool(user, enable);
     }
     public static boolean getUser() {
         return BaseSp.l().getBool(user);
     }
 
-    public static void saveUserBinding(String userBinding, boolean enable) {
+    public static void saveUserBinding(boolean enable) {
         BaseSp.l().putBool(userBinding, enable);
     }
     public static boolean getUserBinding() {
         return BaseSp.l().getBool(userBinding);
     }
 
-    public static void saveStorehouse(String storehouse, boolean enable) {
+    public static void saveStorehouse(boolean enable) {
         BaseSp.l().putBool(storehouse, enable);
     }
     public static boolean getStorehouse() {
         return BaseSp.l().getBool(storehouse);
     }
 
-    public static void saveBaseLoc(String baseLoc, boolean enable) {
+    public static void saveBaseLoc(boolean enable) {
         BaseSp.l().putBool(baseLoc, enable);
     }
     public static boolean getBaseLoc() {
         return BaseSp.l().getBool(baseLoc);
     }
 
-    public static void saveBaseGoods(String baseGoods, boolean enable) {
+    public static void saveBaseGoods(boolean enable) {
         BaseSp.l().putBool(baseGoods, enable);
     }
     public static boolean getBaseGoods() {
@@ -59,49 +59,49 @@ public class SpApi {
     }
 
 
-    public static void saveGoodsStrategy(String goodsStrategy, boolean enable) {
+    public static void saveGoodsStrategy(boolean enable) {
         BaseSp.l().putBool(goodsStrategy, enable);
     }
     public static boolean getGoodsStrategy() {
         return BaseSp.l().getBool(goodsStrategy);
     }
 
-    public static void saveCompany(String company, boolean enable) {
+    public static void saveCompany(boolean enable) {
         BaseSp.l().putBool(company, enable);
     }
     public static boolean getCompany() {
         return BaseSp.l().getBool(company);
     }
 
-    public static void saveStorageLot(String storageLot, boolean enable) {
+    public static void saveStorageLot(boolean enable) {
         BaseSp.l().putBool(storageLot, enable);
     }
     public static boolean getStorageLot() {
         return BaseSp.l().getBool(storageLot);
     }
 
-    public static void saveBaseBatch(String baseBatch, boolean enable) {
+    public static void saveBaseBatch(boolean enable) {
         BaseSp.l().putBool(baseBatch, enable);
     }
     public static boolean getBaseBatch() {
         return BaseSp.l().getBool(baseBatch);
     }
 
-    public static void saveUniqueCode(String uniqueCode, boolean enable) {
+    public static void saveUniqueCode(boolean enable) {
         BaseSp.l().putBool(uniqueCode, enable);
     }
     public static boolean getUniqueCode() {
         return BaseSp.l().getBool(uniqueCode);
     }
 
-    public static void saveUserBindings(String userBindings, boolean enable) {
+    public static void saveUserBindings(boolean enable) {
         BaseSp.l().putBool(userBindings, enable);
     }
     public static boolean getUserBindings() {
         return BaseSp.l().getBool(userBindings);
     }
 
-    public static void saveDvSettings(String dvSettings, boolean enable) {
+    public static void saveDvSettings(boolean enable) {
         BaseSp.l().putBool(dvSettings, enable);
     }
     public static boolean getDvSettings() {
