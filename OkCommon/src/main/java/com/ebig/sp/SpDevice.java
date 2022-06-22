@@ -17,7 +17,7 @@ public class SpDevice {
     }
 
     public static void saveSerialNumber(String code) {
-        BaseSp.l().putString(FactoryCode, code);
+        BaseSp.l().putString(serialNumber, code);
     }
 
     public static String getSerialNumber() {
