@@ -2,15 +2,20 @@ package com.ebig.push;
 
 import com.ebig.crosso.utils.CroThread;
 import com.ebig.http.ApushEntity;
+import com.ebig.http.RabbitPushBean;
 import com.ebig.idl.Common2Call;
 import com.ebig.idl.CommonCall;
+import com.ebig.sp.SpDevice;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class APush {
     public final String host;
     public final int prot;
     public final String userName;
     public final String passWord;
-    public final String method;
+    public final List<String> method;
     public CommonCall<String> exceptionListenner;
     public final String serverHost;
 
@@ -29,7 +34,7 @@ public class APush {
         public int prot;
         public String userName;
         public String passWord;
-        public String method = "test";
+        public List<String> method;
         public String serverHost = "http://192.168.1.71:9999/";
 
         public Params(String host, int prot, String userName, String passWord) {
@@ -39,13 +44,13 @@ public class APush {
             this.passWord = passWord;
         }
 
-        public Params method(String method) {
+        public Params method(List<String> method) {
             this.method = method;
             return this;
         }
 
         public Params serverHost(String serverHost) {
-            this.serverHost = method;
+            this.serverHost = serverHost;
             return this;
         }
 
@@ -54,7 +59,7 @@ public class APush {
         }
     }
 
-    public void init(Common2Call<ApushEntity, String> call) {
+    public void init(Common2Call<RabbitPushBean, String> call) {
         CroThread.getIns().runSingleThread(new Runnable() {
             @Override
             public void run() {
@@ -64,8 +69,9 @@ public class APush {
 
     }
 
-    public static APush regist() {
-        return new Params("192.168.1.71", 5672, "admin", "admin").method("test").build();
+    public static APush regist(List<String> deviceList) {
+
+        return new Params("192.168.1.71", 5672, "admin", "admin").method(deviceList).build();
     }
 
 

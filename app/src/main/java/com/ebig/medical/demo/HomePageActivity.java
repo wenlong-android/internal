@@ -39,6 +39,7 @@ import com.ebig.http.Api;
 import com.ebig.http.ApiCall;
 import com.ebig.http.ApushEntity;
 import com.ebig.http.NetResult;
+import com.ebig.http.RabbitPushBean;
 import com.ebig.idl.Common2Call;
 import com.ebig.idl.Common3Call;
 import com.ebig.idl.CommonCall;
@@ -151,8 +152,23 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
 //            });
             // InputPicture();
             //print();
-             createExcl();
+            // createExcl();
+            List<String> deviceList=new ArrayList<>();
+            deviceList.add("a00005061-00000001");
+            deviceList.add("a00005061-00000002");
+            APush.regist(deviceList).init(new Common2Call<RabbitPushBean, String>() {
+                @Override
+                public void onCommonCall(RabbitPushBean push) {
+                    ELog.print("收到信息call factoryCode：" + push.getFactoryCode());
+                    ELog.print("收到信息call host：" + push.getApushEntity().getServerHost());
+                    ELog.print("收到信息call：request" + push.getApushEntity().getParams().toString());
+                }
 
+                @Override
+                public void onOpposite(String error) {
+                    ELog.print("收到信息Exception：" + error);
+                }
+            });
         }
 
     }
@@ -362,17 +378,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
         tv_send = (TextView) findViewById(R.id.tv_send);
         client = (Button) findViewById(R.id.client);
         btnDatabase = (Button) findViewById(R.id.btnDatabase);
-        APush.regist().init(new Common2Call<ApushEntity, String>() {
-            @Override
-            public void onCommonCall(ApushEntity apushEntity) {
 
-            }
-
-            @Override
-            public void onOpposite(String error) {
-
-            }
-        });
     }
 
     private void initTag() {
