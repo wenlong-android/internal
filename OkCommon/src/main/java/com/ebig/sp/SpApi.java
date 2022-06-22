@@ -16,95 +16,95 @@ public class SpApi {
     private static final String userBindings = Api + "saveUserBindings";//新增/修改登录绑定信息
     private static final String dvSettings = Api + "getDeviceSettings";//获取设备的设置
 
-    public void saveDept(boolean enable) {
+    public static void saveDept(boolean enable) {
         BaseSp.l().putBool(dept, enable);
     }
-    public boolean getDept() {
+    public static boolean getDept() {
         return BaseSp.l().getBool(dept);
     }
 
-    public void saveUser(String user, boolean enable) {
+    public static void saveUser(String user, boolean enable) {
         BaseSp.l().putBool(user, enable);
     }
-    public boolean getUser() {
+    public static boolean getUser() {
         return BaseSp.l().getBool(user);
     }
 
-    public void saveUserBinding(String userBinding, boolean enable) {
+    public static void saveUserBinding(String userBinding, boolean enable) {
         BaseSp.l().putBool(userBinding, enable);
     }
-    public boolean getUserBinding() {
+    public static boolean getUserBinding() {
         return BaseSp.l().getBool(userBinding);
     }
 
-    public void saveStorehouse(String storehouse, boolean enable) {
+    public static void saveStorehouse(String storehouse, boolean enable) {
         BaseSp.l().putBool(storehouse, enable);
     }
-    public boolean getStorehouse() {
+    public static boolean getStorehouse() {
         return BaseSp.l().getBool(storehouse);
     }
 
-    public void saveBaseLoc(String baseLoc, boolean enable) {
+    public static void saveBaseLoc(String baseLoc, boolean enable) {
         BaseSp.l().putBool(baseLoc, enable);
     }
-    public boolean getBaseLoc() {
+    public static boolean getBaseLoc() {
         return BaseSp.l().getBool(baseLoc);
     }
 
-    public void saveBaseGoods(String baseGoods, boolean enable) {
+    public static void saveBaseGoods(String baseGoods, boolean enable) {
         BaseSp.l().putBool(baseGoods, enable);
     }
-    public boolean getBaseGoods() {
+    public static boolean getBaseGoods() {
         return BaseSp.l().getBool(baseGoods);
     }
 
 
-    public void saveGoodsStrategy(String goodsStrategy, boolean enable) {
+    public static void saveGoodsStrategy(String goodsStrategy, boolean enable) {
         BaseSp.l().putBool(goodsStrategy, enable);
     }
-    public boolean getGoodsStrategy() {
+    public static boolean getGoodsStrategy() {
         return BaseSp.l().getBool(goodsStrategy);
     }
 
-    public void saveCompany(String company, boolean enable) {
+    public static void saveCompany(String company, boolean enable) {
         BaseSp.l().putBool(company, enable);
     }
-    public boolean getCompany() {
+    public static boolean getCompany() {
         return BaseSp.l().getBool(company);
     }
 
-    public void saveStorageLot(String storageLot, boolean enable) {
+    public static void saveStorageLot(String storageLot, boolean enable) {
         BaseSp.l().putBool(storageLot, enable);
     }
-    public boolean getStorageLot() {
+    public static boolean getStorageLot() {
         return BaseSp.l().getBool(storageLot);
     }
 
-    public void saveBaseBatch(String baseBatch, boolean enable) {
+    public static void saveBaseBatch(String baseBatch, boolean enable) {
         BaseSp.l().putBool(baseBatch, enable);
     }
-    public boolean getBaseBatch() {
+    public static boolean getBaseBatch() {
         return BaseSp.l().getBool(baseBatch);
     }
 
-    public void saveUniqueCode(String uniqueCode, boolean enable) {
+    public static void saveUniqueCode(String uniqueCode, boolean enable) {
         BaseSp.l().putBool(uniqueCode, enable);
     }
-    public boolean getUniqueCode() {
+    public static boolean getUniqueCode() {
         return BaseSp.l().getBool(uniqueCode);
     }
 
-    public void saveUserBindings(String userBindings, boolean enable) {
+    public static void saveUserBindings(String userBindings, boolean enable) {
         BaseSp.l().putBool(userBindings, enable);
     }
-    public boolean getUserBindings() {
+    public static boolean getUserBindings() {
         return BaseSp.l().getBool(userBindings);
     }
 
-    public void saveDvSettings(String dvSettings, boolean enable) {
+    public static void saveDvSettings(String dvSettings, boolean enable) {
         BaseSp.l().putBool(dvSettings, enable);
     }
-    public boolean getDvSettings() {
+    public static boolean getDvSettings() {
         return BaseSp.l().getBool(dvSettings);
     }
 
