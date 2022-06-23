@@ -17,3 +17,14 @@
 + templateApp.gradle 设置独立运行组件模板   <br> 
 + templateLib.gradle 设置普通组件模板   <br> 
 + config.grale 依赖统一管理   <br> 
+
++ 线程切换 @ThreadIo @ThreadMain 
+ ```
+    /*延迟一秒执行*/
+    @ThreadIo(lib = "模块名",user = "编辑人",delay = 1000)
+    public void methodOnIOThread(){
+    }
+    @ThreadMain
+    public void methodOnIOThread(){
+    }
+ ```

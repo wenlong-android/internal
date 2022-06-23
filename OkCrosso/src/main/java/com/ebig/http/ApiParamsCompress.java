@@ -1,5 +1,7 @@
 package com.ebig.http;
 
+import com.ebig.annotation.ThreadIo;
+import com.ebig.annotation.ThreadMain;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -88,4 +90,5 @@ public class ApiParamsCompress implements ApiBaseParams{
                 ", ids=" + ids +
                 '}';
     }
+ 
 }
