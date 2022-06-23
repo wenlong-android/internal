@@ -3,6 +3,7 @@ package com.ebig.http;
 import com.ebig.utils.GsonUtils;
 import com.ebig.utils.JsonUtils;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -13,6 +14,16 @@ public class ApiHelper {
 
     private static HashMap<String, String> map = new HashMap<>();
 
+
+    protected JSONObject simpleJson(String key,Object value){
+        JSONObject object=new JSONObject();
+        try {
+            object.put(key,value);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return object;
+    }
 
     protected String jsonMake(JSONObject data) {
         //ApiParamsForm form = new ApiParamsForm(data);

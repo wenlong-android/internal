@@ -3,20 +3,18 @@ package com.ebig.http;
 import com.ebig.utils.TimeUtils;
 import com.google.gson.Gson;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApiParamsAll implements ApiBaseParams{
+public class ApiParamsAllCompress implements ApiBaseParams{
 
     private Integer current;
     private Integer size;
     private String queryName;
+    private boolean compress;
     private List<ConditionsBean> conditions;
 
-    public ApiParamsAll(Integer current, Integer size, String queryName, long start, long end) {
+    public ApiParamsAllCompress(Integer current, Integer size, String queryName, long start, long end) {
         this.current = current;
         this.size = size;
         this.queryName = queryName;
@@ -25,6 +23,7 @@ public class ApiParamsAll implements ApiBaseParams{
         conditions=new ArrayList<>();
         conditions.add(s);
         conditions.add(e);
+        compress=true;
     }
 
     public Integer getCurrent() {
@@ -51,6 +50,13 @@ public class ApiParamsAll implements ApiBaseParams{
         this.queryName = queryName;
     }
 
+    public boolean isCompress() {
+        return compress;
+    }
+
+    public void setCompress(boolean compress) {
+        this.compress = compress;
+    }
 
     public String getJson(){
         return new Gson().toJson(this);

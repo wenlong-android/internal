@@ -9,6 +9,6 @@ import androidx.annotation.IntDef;
 })
 
 public @interface SetCargoType {
-    final static int normal = 1;
-    final static int mainCargo = 0;
+    final static int normal = 0;
+    final static int mainCargo = 1;
 }

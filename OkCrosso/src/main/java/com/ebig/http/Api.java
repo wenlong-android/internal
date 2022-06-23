@@ -4,6 +4,7 @@ import com.ebig.utils.GsonUtils;
 import com.ebig.utils.JsonUtils;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Api extends ApiHelper implements IApi {
@@ -27,6 +28,24 @@ public class Api extends ApiHelper implements IApi {
     public static String getHost() {
         return host;
     }
+
+
+    /**
+     * 注册设备信息
+     *
+     * @param factoryCode
+     * @param tenantId
+     * @param machineName
+     * @return 对应db:
+     */
+    @Override
+    public ApiRequest getDeviceInfo(String factoryCode) {
+        String url = ApiHelper.makeUrl(true, host, "getDeviceInfo", ApiType.machine);
+        JSONObject param =  simpleJson("factoryCode",factoryCode);
+        ApiRequest request = new ApiRequest(url, jsonMake(param));
+        return request;
+    }
+
 
     /**
      * 注册设备信息
