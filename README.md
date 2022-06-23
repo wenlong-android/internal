@@ -18,13 +18,20 @@
 + templateLib.gradle 设置普通组件模板   <br> 
 + config.grale 依赖统一管理   <br> 
 
-+ 线程切换 @ThreadIo @ThreadMain 
++ 线程切换 @ThreadIo @ThreadMain @ThreadNew @ThreadComputation 
  ```
     /*延迟一秒执行*/
     @ThreadIo(lib = "模块名",user = "编辑人",delay = 1000)
-    public void methodOnIOThread(){
-    }
+    public void methodOnIOThread(){}
+	
     @ThreadMain
-    public void methodOnIOThread(){
-    }
+    public void methodOnIOThread(){}
  ```
+ 
+ 
+ + 动态获取权限 ，成功获取权限往下执行
+```
+   @Permission(PermissionConsts.STORAGE)
+    public void writeFile() {
+    }
+```
