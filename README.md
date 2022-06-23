@@ -14,6 +14,6 @@
  
  
 
-###templateApp.gradle 设置独立运行组件模板 <br> 
-###templateLib.gradle 设置普通组件模板 <br> 
-###config.grale 依赖统一管理 <br> 
++ templateApp.gradle 设置独立运行组件模板   <br> 
++ templateLib.gradle 设置普通组件模板   <br> 
++ config.grale 依赖统一管理   <br> 
