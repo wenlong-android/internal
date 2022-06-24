@@ -9,12 +9,12 @@ public interface IApi {
      */
     ApiRequest getDeviceInfo(String factoryCode);
     ApiRequest registerDevice(boolean mainCargo,String factoryCode,String tenantId,String machineName);
-    ApiRequest saveDeviceSettings(String key,String value);
-    ApiRequest getDeviceSettings(JSONArray arrJson);
-    ApiRequest deleteDeviceSettings(JSONArray arrJson);
+    ApiRequest saveDeviceSettings(String factoryCode,String key,String value);
+    ApiRequest getDeviceSettings(String factoryCode,JSONArray arrJson);
+    ApiRequest deleteDeviceSettings(String factoryCode,JSONArray arrJson);
     ApiRequest getTenantList();
-    ApiRequest saveUserBindings(JSONArray json);
-    ApiRequest deleteUserBindings(JSONArray json);
+    ApiRequest saveUserBindings(String factoryCode,JSONArray json);
+    ApiRequest deleteUserBindings(String factoryCode,JSONArray json);
     ApiRequest putIn(String json);
     ApiRequest takeOut(String json);
     /**

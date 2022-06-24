@@ -68,12 +68,12 @@ public class ApiParamsForm {
                 '}';
     }
 
-    public static JSONObject getJson(JSONObject data){
+    public static JSONObject getJson(String factoryCode,JSONObject data){
         JSONObject jsonObject=new JSONObject();
         try {
             jsonObject.put("requestId",System.currentTimeMillis()+"");
             jsonObject.put("operationTime", TimeUtils.getCurrentDate());
-            jsonObject.put("factoryCode",SpDevice.getCode());
+            jsonObject.put("factoryCode",factoryCode);
             jsonObject.put("data",data);
         } catch (JSONException e) {
             e.printStackTrace();

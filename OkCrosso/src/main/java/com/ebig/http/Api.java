@@ -40,7 +40,7 @@ public class Api extends ApiHelper implements IApi {
     public ApiRequest getDeviceInfo(String factoryCode) {
         String url = ApiHelper.makeUrl(true, host, "getDeviceInfo", ApiType.machine);
         JSONObject param =  simpleJson("factoryCode",factoryCode);
-        ApiRequest request = new ApiRequest(url, jsonMake(param));
+        ApiRequest request = new ApiRequest(url, jsonMake(factoryCode,param));
         return request;
     }
 
@@ -57,7 +57,7 @@ public class Api extends ApiHelper implements IApi {
     public ApiRequest registerDevice(boolean mainCargo, String factoryCode, String tenantId, String machineName) {
         String url = ApiHelper.makeUrl(true, host, "registerDevice", ApiType.machine);
         JSONObject param = makeRegisterDeviceJsons(mainCargo, factoryCode, tenantId, machineName);
-        ApiRequest request = new ApiRequest(url, jsonMake(param));
+        ApiRequest request = new ApiRequest(url, jsonMake(factoryCode,param));
         return request;
     }
 
@@ -67,10 +67,10 @@ public class Api extends ApiHelper implements IApi {
      * @return 对应db:
      */
     @Override
-    public ApiRequest saveDeviceSettings(String key, String value) {
+    public ApiRequest saveDeviceSettings(String factoryCode,String key, String value) {
         String url = ApiHelper.makeUrl(true, host, "saveDeviceSettings", ApiType.machine);
-        JSONObject params = JsonUtils.createStting(key, value);
-        ApiRequest request = new ApiRequest(url, jsonMake(params));
+        JSONObject params =  createStting(factoryCode,key, value);
+        ApiRequest request = new ApiRequest(url, jsonMake(factoryCode,params));
         return request;
     }
 
@@ -80,10 +80,10 @@ public class Api extends ApiHelper implements IApi {
      * @return 对应db:
      */
     @Override
-    public ApiRequest getDeviceSettings(JSONArray arrJson) {
+    public ApiRequest getDeviceSettings(String factoryCode,JSONArray arrJson) {
         String url = ApiHelper.makeUrl(true, host, "getDeviceSettings", ApiType.machine);
-        JSONObject params = JsonUtils.crateSettingArr(arrJson);
-        ApiRequest request = new ApiRequest(url, jsonMake(params));
+        JSONObject params = crateSettingArr(factoryCode,arrJson);
+        ApiRequest request = new ApiRequest(url, jsonMake(factoryCode,params));
         return request;
     }
 
@@ -93,10 +93,10 @@ public class Api extends ApiHelper implements IApi {
      * @return 对应db:
      */
     @Override
-    public ApiRequest deleteDeviceSettings(JSONArray arrJson) {
+    public ApiRequest deleteDeviceSettings(String factoryCode,JSONArray arrJson) {
         String url = ApiHelper.makeUrl(true, host, "deleteDeviceSettings", ApiType.machine);
-        JSONObject params = JsonUtils.crateSettingArr(arrJson);
-        ApiRequest request = new ApiRequest(url, jsonMake(params));
+        JSONObject params = crateSettingArr(factoryCode,arrJson);
+        ApiRequest request = new ApiRequest(url, jsonMake(factoryCode,params));
         return request;
     }
 
@@ -108,7 +108,7 @@ public class Api extends ApiHelper implements IApi {
     @Override
     public ApiRequest getTenantList() {
         String url = ApiHelper.makeUrl(true, host, "getTenantList", ApiType.upms);
-        ApiRequest request = new ApiRequest(url, JsonUtils.createSome());
+        ApiRequest request = new ApiRequest(url, createSome());
         return request;
     }
 
@@ -119,10 +119,11 @@ public class Api extends ApiHelper implements IApi {
      * @return 对应db:
      */
     @Override
-    public ApiRequest saveUserBindings(JSONArray array) {
+    public ApiRequest saveUserBindings(String factoryCode,JSONArray array) {
         String url = ApiHelper.makeUrl(true, host, "saveUserBindings", ApiType.upms);
         JSONObject object=simpleJson("items ",array);
-        ApiRequest request = new ApiRequest(url, jsonMake(object));
+        addFactoryCode(object,factoryCode);
+        ApiRequest request = new ApiRequest(url, jsonMake(factoryCode,object));
         return request;
     }
 
@@ -133,10 +134,11 @@ public class Api extends ApiHelper implements IApi {
      * @return 对应db:
      */
     @Override
-    public ApiRequest deleteUserBindings(JSONArray array) {
+    public ApiRequest deleteUserBindings(String factoryCode,JSONArray array) {
         String url = ApiHelper.makeUrl(true, host, "deleteUserBindings", ApiType.upms);
         JSONObject object=simpleJson("bindingIds ",array);
-        ApiRequest request = new ApiRequest(url, jsonMake(object));
+        addFactoryCode(object,factoryCode);
+        ApiRequest request = new ApiRequest(url, jsonMake(factoryCode,object));
         return request;
     }
 
