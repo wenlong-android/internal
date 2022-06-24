@@ -50,4 +50,6 @@ public class ApiHelper {
             return host + serviceId + "/dynamic/masterDetailQuery";
         }
     }
+
+
 }

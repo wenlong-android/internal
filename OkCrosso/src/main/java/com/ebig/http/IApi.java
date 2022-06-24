@@ -13,8 +13,8 @@ public interface IApi {
     ApiRequest getDeviceSettings(JSONArray arrJson);
     ApiRequest deleteDeviceSettings(JSONArray arrJson);
     ApiRequest getTenantList();
-    ApiRequest saveUserBindings(String json);
-    ApiRequest deleteUserBindings(String json);
+    ApiRequest saveUserBindings(JSONArray json);
+    ApiRequest deleteUserBindings(JSONArray json);
     ApiRequest putIn(String json);
     ApiRequest takeOut(String json);
     /**

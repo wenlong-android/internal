@@ -117,26 +117,26 @@ public class Api extends ApiHelper implements IApi {
     /**
      * 新增/修改登录绑定信息
      *
-     * @param json
+     * @param array
      * @return 对应db:
      */
     @Override
-    public ApiRequest saveUserBindings(String json) {
+    public ApiRequest saveUserBindings(JSONArray array) {
         String url = ApiHelper.makeUrl(true, host, "saveUserBindings", ApiType.upms);
-        ApiRequest request = new ApiRequest(url, json);
+        ApiRequest request = new ApiRequest(url, jsonMake(simpleJson("items ",array)));
         return request;
     }
 
     /**
      * 删除登录绑定信息
      *
-     * @param json
+     * @param array
      * @return 对应db:
      */
     @Override
-    public ApiRequest deleteUserBindings(String json) {
+    public ApiRequest deleteUserBindings(JSONArray array) {
         String url = ApiHelper.makeUrl(true, host, "deleteUserBindings", ApiType.upms);
-        ApiRequest request = new ApiRequest(url, json);
+        ApiRequest request = new ApiRequest(url, jsonMake(simpleJson("bindingIds ",array)));
         return request;
     }
 
