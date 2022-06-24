@@ -127,6 +127,14 @@ public class HexUtils {
         return Integer.valueOf(hex, 16);
     }
 
+    /**
+     * 16字符串转int
+     */
+    public static long hex2Long(String hex) {
+        return Long.valueOf(hex, 16);
+    }
+
+
 
     /*将字符串(不限于中文)转换为十六进制Unicode编码字符串*/
     public static String str2Unicode(String str) {
