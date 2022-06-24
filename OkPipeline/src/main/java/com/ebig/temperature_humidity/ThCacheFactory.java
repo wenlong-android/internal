@@ -113,7 +113,7 @@ public class ThCacheFactory {
         return teHuEntity;
     }
 
-    @ThreadIo
+
     private static void inserDbfirst(ThDbEntity info, TeHuEntity teHuEntity) {
         String gson = GsonUtils.toJson(teHuEntity);
         info.setCommit(0);

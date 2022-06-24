@@ -1,11 +1,5 @@
 package com.ebig.http;
 
-import com.ebig.annotation.Permission;
-import com.ebig.annotation.ThreadComputation;
-import com.ebig.annotation.ThreadIo;
-import com.ebig.annotation.ThreadMain;
-import com.ebig.annotation.ThreadNew;
-import com.ebig.crosso.utils.PermissionConsts;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -56,8 +50,7 @@ public class ApiParamsCompress implements ApiBaseParams {
     public void setIds(List<String> ids) {
         this.ids = ids;
     }
-
-    public String getJson() {
+    public String getJson(){
         return new Gson().toJson(this);
     }
 
@@ -88,7 +81,6 @@ public class ApiParamsCompress implements ApiBaseParams {
     }
 
     @Override
-    @ThreadComputation
     public String toString() {
         return "ApiParams{" +
                 "current=" + current +
@@ -97,6 +89,4 @@ public class ApiParamsCompress implements ApiBaseParams {
                 ", ids=" + ids +
                 '}';
     }
-
-
 }

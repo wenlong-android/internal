@@ -26,8 +26,7 @@ public class ApiHelper {
     }
 
     protected String jsonMake(JSONObject data) {
-        //ApiParamsForm form = new ApiParamsForm(data);
-        JSONObject jsonObject=ApiParamsForm.getJson(data);
+         JSONObject jsonObject=ApiParamsForm.getJson(data);
         return jsonObject.toString();
     }
 

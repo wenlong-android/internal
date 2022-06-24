@@ -34,8 +34,6 @@ public class Api extends ApiHelper implements IApi {
      * 注册设备信息
      *
      * @param factoryCode
-     * @param tenantId
-     * @param machineName
      * @return 对应db:
      */
     @Override
@@ -123,7 +121,8 @@ public class Api extends ApiHelper implements IApi {
     @Override
     public ApiRequest saveUserBindings(JSONArray array) {
         String url = ApiHelper.makeUrl(true, host, "saveUserBindings", ApiType.upms);
-        ApiRequest request = new ApiRequest(url, jsonMake(simpleJson("items ",array)));
+        JSONObject object=simpleJson("items ",array);
+        ApiRequest request = new ApiRequest(url, jsonMake(object));
         return request;
     }
 
@@ -136,7 +135,8 @@ public class Api extends ApiHelper implements IApi {
     @Override
     public ApiRequest deleteUserBindings(JSONArray array) {
         String url = ApiHelper.makeUrl(true, host, "deleteUserBindings", ApiType.upms);
-        ApiRequest request = new ApiRequest(url, jsonMake(simpleJson("bindingIds ",array)));
+        JSONObject object=simpleJson("bindingIds ",array);
+        ApiRequest request = new ApiRequest(url, jsonMake(object));
         return request;
     }
 
