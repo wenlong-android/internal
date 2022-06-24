@@ -121,7 +121,7 @@ public class Api extends ApiHelper implements IApi {
     @Override
     public ApiRequest saveUserBindings(String factoryCode,JSONArray array) {
         String url = ApiHelper.makeUrl(true, host, "saveUserBindings", ApiType.upms);
-        JSONObject object=simpleJson("items ",array);
+        JSONObject object=simpleJson("items",array);
         addFactoryCode(object,factoryCode);
         ApiRequest request = new ApiRequest(url, jsonMake(factoryCode,object));
         return request;
@@ -136,7 +136,7 @@ public class Api extends ApiHelper implements IApi {
     @Override
     public ApiRequest deleteUserBindings(String factoryCode,JSONArray array) {
         String url = ApiHelper.makeUrl(true, host, "deleteUserBindings", ApiType.upms);
-        JSONObject object=simpleJson("bindingIds ",array);
+        JSONObject object=simpleJson("bindingIds",array);
         addFactoryCode(object,factoryCode);
         ApiRequest request = new ApiRequest(url, jsonMake(factoryCode,object));
         return request;
