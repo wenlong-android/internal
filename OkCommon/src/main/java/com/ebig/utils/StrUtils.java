@@ -81,6 +81,11 @@ public class StrUtils {
     }
 
 
-
-
+    public static List<String> removeGroupId(List<String> realArr) {
+        List<String> list=new ArrayList<>();
+        for (String str:realArr){
+            list.add(str.substring(0,4));
+        }
+        return list;
+    }
 }

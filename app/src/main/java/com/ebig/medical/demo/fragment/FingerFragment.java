@@ -55,6 +55,12 @@ public class FingerFragment extends BaseFrament implements IFingerRegistListenne
         Listenner4Finger.setRegistListenner(FingerFragment.this);
        String fingerId= HexUtils.getFingerId(1,1);
        ELog.print("fingerId:"+fingerId);
+       Listenner4Finger.setUnLockListenner(new CommonCall<String>() {
+           @Override
+           public void onCommonCall(String s) {
+               ELog.print("收到手指id:"+s);
+           }
+       });
     }
 
     @Override

@@ -118,4 +118,19 @@ public class Listenner4Finger {
             deleteAll.onCommonCall(true);
         }
     }
+
+
+    /**
+     * 解锁监听
+     */
+    private static CommonCall<String> unLockListenner;
+
+    public static void setUnLockListenner(CommonCall<String> unLockListenner) {
+        Listenner4Finger.unLockListenner = unLockListenner;
+    }
+    public static void unLockRecive(String data){
+        if (unLockListenner!=null) {
+            unLockListenner.onCommonCall(data);
+        }
+    }
 }

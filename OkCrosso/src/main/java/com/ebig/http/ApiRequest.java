@@ -20,12 +20,12 @@ public class ApiRequest implements IApiRequest {
 
     @Override
     public void request(ApiCall<NetResult> callBack) {
-        ELog.print(url.hashCode()+" ApiRequest url:"+url);
-        ELog.print(url.hashCode()+" ApiRequest params:"+params);
+        ELog.print(params.hashCode()+" ApiRequest url:"+url);
+        ELog.print(params.hashCode()+" ApiRequest params:"+params);
         RequestCenter.getRequestPost(url, params, new DisposeDataListener() {
             @Override
             public void onSuccess(NetResult result) {
-                ELog.print(url.hashCode()+" ApiRequest onSuccess:"+ GsonUtils.toJson(result));
+                ELog.print(params.hashCode()+" ApiRequest onSuccess:"+ GsonUtils.toJson(result));
                 if (result != null && result.getCode() == 200) {
                     callBack.onResult(result);
                     CrossoDataAPI.getInstance().http(Thread.currentThread().getName(),
@@ -38,7 +38,7 @@ public class ApiRequest implements IApiRequest {
 
             @Override
             public void onFailure(OkHttpException exception) {
-                ELog.print(url.hashCode()+" ApiRequest onFailure:"+ exception.getMessage());
+                ELog.print(params.hashCode()+" ApiRequest onFailure:"+ exception.getMessage());
                 callBack.onFail(exception.getEcode(), exception.getMessage());
                 CrossoDataAPI.getInstance().http(Thread.currentThread().getName(), new HttpDetails(params, url, exception.getEcode(), exception.getMessage()));
             }
